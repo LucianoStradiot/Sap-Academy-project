@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZACA1Q2024_LUTHIERS_SRV_01" xml:lang="es" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Luthiers" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="IdLuthier"/>
+                </Key>
+                <Property Name="Localidad" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Comentario" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IdLuthier" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Ficticio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nombre" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Apellido" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TipoInstrumento" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Car.20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ToInstrumentoSet" Relationship="ZACA1Q2024_LUTHIERS_SRV_01.Assoc_Luthier_to_Instrumentos" FromRole="FromRole_Assoc_Luthier_to_Instrumentos" ToRole="ToRole_Assoc_Luthier_to_Instrumentos"/>
+            </EntityType>
+            <EntityType Name="Instrumento" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="IdInstrumento"/>
+                    <PropertyRef Name="IdLuthier"/>
+                </Key>
+                <Property Name="IdInstrumento" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Ficticio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Precio" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="ENT4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AnioFabricacion" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="ENT4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IdLuthier" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Ficticio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NombreInstrumento" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TipoInstrumento" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ToLuthiers" Relationship="ZACA1Q2024_LUTHIERS_SRV_01.Assoc_Luthier_to_Instrumentos" FromRole="ToRole_Assoc_Luthier_to_Instrumentos" ToRole="FromRole_Assoc_Luthier_to_Instrumentos"/>
+            </EntityType>
+            <Association Name="Assoc_Luthier_to_Instrumentos" sap:content-version="1">
+                <End Type="ZACA1Q2024_LUTHIERS_SRV_01.Luthiers" Multiplicity="1" Role="FromRole_Assoc_Luthier_to_Instrumentos"/>
+                <End Type="ZACA1Q2024_LUTHIERS_SRV_01.Instrumento" Multiplicity="*" Role="ToRole_Assoc_Luthier_to_Instrumentos"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Assoc_Luthier_to_Instrumentos">
+                        <PropertyRef Name="IdLuthier"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Assoc_Luthier_to_Instrumentos">
+                        <PropertyRef Name="IdLuthier"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZACA1Q2024_LUTHIERS_SRV_01_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="LuthiersSet" EntityType="ZACA1Q2024_LUTHIERS_SRV_01.Luthiers" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="InstrumentoSet" EntityType="ZACA1Q2024_LUTHIERS_SRV_01.Instrumento" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="Assoc_Luthier_to_InstrumentosSet" Association="ZACA1Q2024_LUTHIERS_SRV_01.Assoc_Luthier_to_Instrumentos" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="LuthiersSet" Role="FromRole_Assoc_Luthier_to_Instrumentos"/>
+                    <End EntitySet="InstrumentoSet" Role="ToRole_Assoc_Luthier_to_Instrumentos"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://stks4hpil.eastus2.cloudapp.azure.com:8002/sap/opu/odata/sap/ZACA1Q2024_LUTHIERS_SRV_01/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://stks4hpil.eastus2.cloudapp.azure.com:8002/sap/opu/odata/sap/ZACA1Q2024_LUTHIERS_SRV_01/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

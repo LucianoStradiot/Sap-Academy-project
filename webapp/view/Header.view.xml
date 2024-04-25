@@ -1,0 +1,14 @@
+<mvc:View height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}" showHeader="false">
+        <ObjectHeader id="_IDGenObjectHeader1" title="Proyecto Luthier" number="{
+				parts:[{path:'Price'},{path:'CurrencyCode'}],
+				type: 'sap.ui.model.type.Currency',
+				formatOptions: {showMeasure: false}
+			}" numberUnit="{CurrencyCode}" responsive="true" class="sapUiResponsivePadding--header">
+            <ObjectAttribute id="_IDGenObjectAttribute1" text="{WeightMeasure} {WeightUnit}" />
+            <ObjectAttribute id="_IDGenObjectAttribute2" text="{Width} x {Depth} x {Height} {DimUnit}" />
+        </ObjectHeader>
+    </Page>
+</mvc:View>

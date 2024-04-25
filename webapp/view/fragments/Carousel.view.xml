@@ -1,0 +1,53 @@
+<mvc:View
+	controllerName="aca20241q.controller.Carousel"
+	xmlns="sap.ui.webc.main"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	>
+	<Toast id="demoToast" />
+		<Carousel id="_IDGenCarousel1" navigate=".handleNavigate" cyclic="true">
+			<Card id="_IDGenCard1" width="400px">
+				<header>
+					<CardHeader id="_IDGenCardHeader1" titleText="Team Space" subtitleText="Direct Reports">
+						<avatar>
+							<Icon id="_IDGenIcon1" name="group" />
+						</avatar>
+					</CardHeader>
+				</header>
+				<List id="_IDGenList1" separators="None">
+					<StandardListItem id="_IDGenStandardListItem1" description="User Researcher" icon="employee" text="Alain Chevalier" />
+					<StandardListItem id="_IDGenStandardListItem2" description="Artist" icon="employee" text="Monique Legrand" />
+					<StandardListItem id="_IDGenStandardListItem3" description="UX Specialist" icon="employee" text="Isabella Adams" />
+				</List>
+			</Card>
+			<Card id="_IDGenCard2" width="400px">
+				<header>
+					<CardHeader id="_IDGenCardHeader2" titleText="Products" subtitleText="It Equipment">
+						<avatar>
+							<Icon id="_IDGenIcon2" name="laptop" />
+						</avatar>
+					</CardHeader>
+				</header>
+				<List id="_IDGenList2" separators="None">
+					<StandardListItem id="_IDGenStandardListItem4" icon="laptop" text="Notebooks" description="Professional notebooks" />
+					<StandardListItem id="_IDGenStandardListItem5" icon="sys-monitor" text=" Monitors" description="HD Monitors" />
+					<StandardListItem id="_IDGenStandardListItem6" icon="popup-window" text="Desktops" description="Working Stations" />
+				</List>
+			</Card>
+			<Card id="_IDGenCard3" width="400px">
+				<header>
+					<CardHeader id="_IDGenCardHeader3" titleText="Orders" subtitleText="Top 3 Products">
+						<avatar>
+							<Icon id="_IDGenIcon3" name="desktop-mobile" />
+						</avatar>
+					</CardHeader>
+				</header>
+				<List id="_IDGenList3" separators="None">
+					<StandardListItem id="_IDGenStandardListItem7" description="Digital Assistant" icon="iphone" text="Comfort Easy" />
+					<StandardListItem id="_IDGenStandardListItem8" description="Digital Organizer" icon="iphone" text="ITelO Vault" />
+					<StandardListItem id="_IDGenStandardListItem9" description="Print 2400 dpi image quality color documents"
+						icon="print" text="Laser Professional Eco" />
+				</List>
+			</Card>
+		</Carousel>
+</mvc:View>
