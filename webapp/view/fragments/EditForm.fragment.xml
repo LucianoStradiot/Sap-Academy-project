@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+
+    <f:SimpleForm id="myForm" editable="true" layout="ResponsiveGridLayout">
+        <Label id="_IDGenLabel1" text="Name"/>
+        <Input id="_IDGenInput1" type="Text" />
+        <Label id="_IDGenLabel2" text="Supplier"/>
+        <Input id="_IDGenInput2" type="Text" />
+        <Label id="_IDGenLabel3" text="Price"/>
+        <Input id="_IDGenInput3" type="Number" />
+        <Label id="_IDGenLabel4" text="Description"/>
+        <TextArea id="_IDGenTextArea1" value="{/Description}"/>
+    </f:SimpleForm>
+
+</core:FragmentDefinition>

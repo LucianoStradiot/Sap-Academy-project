@@ -1,10 +1,8 @@
-<mvc:View controllerName="aca20241q.controller.Main"
+<mvc:View xmlns:layout="sap.ui.layout" controllerName="aca20241q.controller.Main"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-    <Page id="_IDGenPage1" showHeader="false">
-        <content>
-            <mvc:XMLView id="_IDGenXMLView2" viewName="aca20241q.view.Header" />
-            <mvc:XMLView id="_IDGenXMLView1" viewName="aca20241q.view.fragments.Carousel" />
-        </content>
+    <Page id="page" title="{i18n>title}" showHeader="false">
+        <mvc:XMLView id="_IDGenXMLView2" viewName="aca20241q.view.Header" />
+        <mvc:XMLView id="_IDGenXMLView3" viewName="aca20241q.view.Table" />
     </Page>
 </mvc:View>
