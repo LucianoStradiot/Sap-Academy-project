@@ -13,8 +13,7 @@ sap.ui.define(
 
       getLuthiers: async () => {
         try {
-          const oModel = this.getOwnerComponent().getModel();
-          oModel = await fetch("/LuthierSet", { method: "GET" });
+          oModel = await fetch("/LuthiersSet", { method: "GET" });
           if (response.ok) {
             const data = await response.json();
             alert(JSON.stringify(data.results));

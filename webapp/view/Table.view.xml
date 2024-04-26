@@ -1,9 +1,9 @@
-<mvc:View height="100%"
+<mvc:View height="100%" controllerName="aca20241q.controller.Table"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <NavContainer id="navCon">
         <Page id="table" showHeader="false">
-            <Table id="idProductsTable">
+            <Table id="idProductsTable" items="{/LuthiersSet}">
                 <headerToolbar>
                     <OverflowToolbar id="_IDGenOverflowToolbar1">
                         <Title id="_IDGenTitle1" text="Luthier´s" level="H2"/>
@@ -34,12 +34,12 @@
                 <items>
                     <ColumnListItem id="_IDGenColumnListItem1">
                         <cells>
-                            <Text id="_IDGenText31" text="001"/>
-                            <Text id="_IDGenText32" text="Juancho"/>
-                            <Text id="_IDGenText33" text="García"/>
-                            <Text id="_IDGenText34" text="Rosario"/>
-                            <Text id="_IDGenText35" text="Cuerdas"/>
-                            <Text id="_IDGenText46" text="Luthier con mas de 15 años en el rubro"/>
+                            <Text id="IdLuthier" text="{IdLuthier}"/>
+                            <Text id="Nombre" text="{Nombre}"/>
+                            <Text id="Apellido" text="{Apellido}"/>
+                            <Text id="Localidad" text="{Localidad}"/>
+                            <Text id="Tipo_de_instrumento" text="{TipoInstrumento}"/>
+                            <Text id="Descripcion" text="{Descripcion}"/>
                         </cells>
                     </ColumnListItem>
                 </items>
