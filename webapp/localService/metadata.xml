@@ -6,8 +6,9 @@
                 <Key>
                     <PropertyRef Name="IdLuthier"/>
                 </Key>
-                <Property Name="Localidad" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Comentario" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="IdLuthier" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Ficticio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Localidad" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Comentario" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descripcion" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Comentario" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Nombre" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Apellido" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="TipoInstrumento" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Car.20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
@@ -19,6 +20,7 @@
                     <PropertyRef Name="IdLuthier"/>
                 </Key>
                 <Property Name="IdInstrumento" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Ficticio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descripcion" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Comentario" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Precio" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="ENT4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="AnioFabricacion" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="ENT4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="IdLuthier" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Ficticio" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
