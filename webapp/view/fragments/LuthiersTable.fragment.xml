@@ -1,0 +1,47 @@
+<core:FragmentDefinition height="100%" controllerName="aca20241q.controller.LuthiersTable"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="table" showHeader="false">
+        <Table id="idProductsTable" items="{/LuthiersSet}">
+            <headerToolbar>
+                <OverflowToolbar id="IDGenOverflowToolbar1">
+                    <Title id="IDGenTitle1" text="Luthier´s" level="H2"/>
+                    <ToolbarSpacer id="IDGenToolbarSpacer1"/>
+                    <OverflowToolbarButton id="idAddButton" type="Transparent" icon="sap-icon://add" press="handleNewItemAdd"/>
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="IDGenColumn1" width="12em">
+                    <Text id="IDGenText1" text="Id Luthier"/>
+                </Column>
+                <Column id="IDGenColumn2" width="12em">
+                    <Text id="IDGenText2" text="Nombre"/>
+                </Column>
+                <Column id="IDGenColumn3" width="12em">
+                    <Text id="IDGenTextt3" text="Apellido"/>
+                </Column>
+                <Column id="IDGenColumn4" width="12em">
+                    <Text id="IDGenTextt4" text="Localidad"/>
+                </Column>
+                <Column id="IDGenColumn5" width="12em">
+                    <Text id="IDGenText5" text="Tipo"/>
+                </Column>
+                <Column id="IDGenColumn6" width="12em">
+                    <Text id="IDGenText6" text="Descripción"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="IDGenColumnListItem1">
+                    <cells>
+                        <Text id="IdLuthier" text="{IdLuthier}"/>
+                        <Text id="Nombre" text="{Nombre}"/>
+                        <Text id="Apellido" text="{Apellido}"/>
+                        <Text id="Localidad" text="{Localidad}"/>
+                        <Text id="Tipodeinstrumento" text="{TipoInstrumento}"/>
+                        <Text id="Descripcion" text="{Descripcion}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</core:FragmentDefinition>
