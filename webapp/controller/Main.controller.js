@@ -60,7 +60,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
 
     showFragment: function (fragmentId) {
       var oNavCon = that.byId("navContainer");
-      var oFragment = that.byId(fragmentId);
+      var oFragment = that.byId(fragmentId); //Llama al id de la page dentro del main
       console.log("Intentando mostrar fragmento:", fragmentId);
       console.log("oNavCon:", oNavCon);
       console.log("oFragment:", oFragment);

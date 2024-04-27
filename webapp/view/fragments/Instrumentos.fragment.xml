@@ -1,15 +1,47 @@
-<core:FragmentDefinition xmlns="sap.m"
-    xmlns:f="sap.ui.layout.form"
+<core:FragmentDefinition height="100%"
+    xmlns="sap.m"
     xmlns:core="sap.ui.core">
-
-    <f:SimpleForm id="myForm" editable="true" layout="ResponsiveGridLayout">
-        <Label id="_IDGenLabel1" text="Name"/>
-        <Input id="_IDGenInput1" type="Text" />
-        <Label id="_IDGenLabel2" text="Supplier"/>
-        <Input id="_IDGenInput2" type="Text" />
-        <Label id="_IDGenLabel3" text="Price"/>
-        <Input id="_IDGenInput3" type="Number" />
-        <Label id="_IDGenLabel4" text="Description"/>
-    </f:SimpleForm>
-
+    <Page id="Instrumentos" showHeader="false">
+        <Table id="_IDGenTable1" items="{/InstrumentoSet}">
+            <headerToolbar>
+                <OverflowToolbar id="_IDGenOverflowToolbar1">
+                    <Title id="_IDGenTitle1" text="Instrumentos" level="H2"/>
+                    <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                    <OverflowToolbarButton id="_IDGenOverflowToolbarButton1" type="Transparent" icon="sap-icon://add" press="handleNewItemAdd"/>
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="_IDGenColumn1" width="12em">
+                    <Text id="_IDGenText1" text="Id Luthier"/>
+                </Column>
+                <Column id="_IDGenColumn2" width="12em">
+                    <Text id="_IDGenText2" text="Nombre"/>
+                </Column>
+                <Column id="_IDGenColumn3" width="12em">
+                    <Text id="_IDGenText3" text="Tipo"/>
+                </Column>
+                <Column id="_IDGenColumn4" width="12em">
+                    <Text id="_IDGenText4" text="Año fabricación"/>
+                </Column>
+                <Column id="_IDGenColumn5" width="12em">
+                    <Text id="_IDGenText5" text="Precio"/>
+                </Column>
+                <Column id="_IDGenColumn6" width="12em">
+                    <Text id="_IDGenText6" text="Descripción"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="_IDGenColumnListItem1">
+                    <cells>
+                        <Text id="IdLuthiers" text="{IdLuthier}"/>
+                        <Text id="NombreInstrumento" text="{NombreInstrumento}"/>
+                        <Text id="TipoInstrumento" text="{TipoInstrumento}"/>
+                        <Text id="AnioFabricacion" text="{AnioFabricacion}"/>
+                        <Text id="Precio" text="USD {Precio}"/>
+                        <Text id="Descripcionn" text="{Descripcion}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
 </core:FragmentDefinition>
