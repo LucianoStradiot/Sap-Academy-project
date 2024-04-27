@@ -1,7 +1,7 @@
 <core:FragmentDefinition height="100%" controllerName="aca20241q.controller.LuthiersTable"
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
-    <Page id="table" showHeader="false">
+    <Page id="LuthiersTable" showHeader="false">
         <Table id="idProductsTable" items="{/LuthiersSet}">
             <headerToolbar>
                 <OverflowToolbar id="IDGenOverflowToolbar1">

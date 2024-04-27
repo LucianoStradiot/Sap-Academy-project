@@ -10,7 +10,6 @@
         <Label id="_IDGenLabel3" text="Price"/>
         <Input id="_IDGenInput3" type="Number" />
         <Label id="_IDGenLabel4" text="Description"/>
-        <TextArea id="_IDGenTextArea1" value="{/Description}"/>
     </f:SimpleForm>
 
 </core:FragmentDefinition>
