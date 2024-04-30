@@ -1,7 +1,7 @@
-<core:FragmentDefinition height="100%"
+<mvc:View id="_IDGenView1" height="100%" controllerName="aca20241q.controller.Instrumentos"
     xmlns="sap.m"
-    xmlns:core="sap.ui.core">
-    <Page id="Instrumentos" showHeader="false">
+    xmlns:mvc="sap.ui.core.mvc">
+    <Page id="Instrumentos" showHeader="false" enableScrolling="false">
         <Table id="_IDGenTable1" items="{/InstrumentoSet}">
             <headerToolbar>
                 <OverflowToolbar id="_IDGenOverflowToolbar1">
@@ -44,4 +44,4 @@
             </items>
         </Table>
     </Page>
-</core:FragmentDefinition>
+</mvc:View>

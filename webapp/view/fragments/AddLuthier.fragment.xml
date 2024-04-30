@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog id="_IDGenDialog1" title="Agregar Luthier" contentWidth="30%">
+        <content>
+            <form:SimpleForm id="SimpleFormDisplay480" editable="false" layout="ResponsiveGridLayout" title="Nuevo equipo" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                <form:content>
+                    <Label id="_IDGenLabel1" text="id" />
+                    <Input id="id" value="{CreateLuthier>/IdLuthier}" valueLiveUpdate="true"/>
+                    <Label id="_IDGenLabel2" text="Nombre" />
+                    <Input id="nombreInput" value="{CreateLuthier>/Nombre}" valueLiveUpdate="true"/>
+                    <Label id="_IDGenLabel3" text="Apellido" />
+                    <Input id="apellidoInput" value="{CreateLuthier>/Apellido}" valueLiveUpdate="true"/>
+                    <Label id="_IDGenLabel4" text="Localidad" />
+                    <Input id="localidadInput" value="{CreateLuthier>/Localidad}" valueLiveUpdate="true"/>
+                    <Label id="_IDGenLabel5" text="Tipo de Instrumento" />
+                    <Input id="tipoInstrumentoInput" value="{CreateLuthier>/TipoInstrumento}" valueLiveUpdate="true"/>
+                    <Label id="_IDGenLabel6" text="Descripción" />
+                    <TextArea id="descripcionInput" value="{CreateLuthier>/Descripcion}" valueLiveUpdate="true"/>
+                </form:content>
+                <form:layoutData>
+                    <FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
+                </form:layoutData>
+            </form:SimpleForm>
+        </content>
+        <beginButton>
+            <Button id="_IDGenButton1" text="Agregar" press=".onCreateLuthierPress" type="Emphasized" />
+        </beginButton>
+        <endButton>
+            <Button id="_IDGenButton2" text="Cancelar" press=".onCloseLuthierPress" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
+

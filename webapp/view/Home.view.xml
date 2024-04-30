@@ -1,0 +1,21 @@
+<mvc:View controllerName="aca20241q.controller.Home"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.ui.webc.main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout" height="100%">
+    <l:VerticalLayout id="_IDGenVerticalLayout1" class="sapUiContentPadding" width="100%">
+        <Card id="_IDGenCard1" width="300px">
+            <header>
+                <CardHeader id="_IDGenCardHeader1" titleText="Team Space" subtitleText="Direct Reports">
+                    <avatar>
+                        <Icon id="_IDGenIcon1" name="group" />
+                    </avatar>
+                    <action>
+                        <Button id="_IDGenButton1" design="Emphasized" text="View All" />
+                    </action>
+                </CardHeader>
+            </header>
+        </Card>
+    </l:VerticalLayout>
+</mvc:View>
