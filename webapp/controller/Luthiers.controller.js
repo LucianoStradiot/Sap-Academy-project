@@ -18,12 +18,12 @@ sap.ui.define(
             function (oDialog) {
               that.getView().addDependent(oDialog);
               let oBody = new sap.ui.model.json.JSONModel({
-                "IdLuthier": "",
-                "Nombre": "",
-                "Apellido": "",
-                "Localidad": "",
-                "TipoInstrumento": "",
-                "Descripción": "",
+                IdLuthier: "",
+                Nombre: "",
+                Apellido: "",
+                Localidad: "",
+                TipoInstrumento: "",
+                Descripcion: "",
               });
               oBody.setDefaultBindingMode("TwoWay");
               oDialog.setModel(oBody, "CreateLuthier");
@@ -45,23 +45,17 @@ sap.ui.define(
       },
 
       onCreateLuthierPress: function (oEvent) {
-        // llamada al odata:
         let oEntry = oEvent.getSource().getModel("CreateLuthier").getData();
         var oDataModel = that.getView().getModel();
         oDataModel.create("/LuthiersSet", oEntry, {
           success: function (oResponse) {
             var result = oResponse?.results;
-            sap.m.MessageBox.success(
-              "Se generó una nueva entrada en los equipos"
-            );
+            sap.m.MessageBox.success("Luthier creado");
             that.getOwnerComponent().getModel().refresh(true, true);
             that.onCloseLuthierPress();
           },
-          error: function (oError) {
-            // manejar excepción del servicio
-            sap.m.MessageBox.error(
-              "Se generó un error al intentar crear un nuevo equipo"
-            );
+          error: function () {
+            sap.m.MessageBox.error("Error al intentar crear un nuevo luthier");
           },
         });
       },
@@ -70,6 +64,39 @@ sap.ui.define(
           function (oDialog) {
             oDialog.close();
           }.bind(that)
+        );
+      },
+
+      deleteLuthier: function (oEvent) {
+        let sPath = oEvent.getSource().getBindingContext().getPath();
+
+        sap.m.MessageBox.confirm(
+          "¿Estás seguro de que quieres eliminar el Luthier?",
+          {
+            title: "Confirmación",
+            onClose: function (oAction) {
+              if (oAction === sap.m.MessageBox.Action.OK) {
+                var oDataModel = oEvent.getSource().getModel();
+                if (oDataModel) {
+                  oDataModel.remove(`${sPath}`, {
+                    success: function (oResponse) {
+                      sap.m.MessageBox.success(
+                        "Se eliminó correctamente el Luthier"
+                      );
+                      oDataModel.refresh(true, true);
+                    },
+                    error: function (oError) {
+                      sap.m.MessageBox.error("Error al eliminar el luthier");
+                    },
+                  });
+                } else {
+                  sap.m.MessageBox.error(
+                    "No se pudo obtener el modelo de datos"
+                  );
+                }
+              }
+            },
+          }
         );
       },
     });

@@ -6,27 +6,33 @@
             <OverflowToolbar id="IDGenOverflowToolbar1">
                 <Title id="IDGenTitle1" text="Luthier´s" level="H2"/>
                 <ToolbarSpacer id="IDGenToolbarSpacer1"/>
-                <OverflowToolbarButton id="idAddButton" type="Transparent" icon="sap-icon://add" press="onCreateLuthierPress"/>
+                <OverflowToolbarButton id="idAddButton" text="Add Luthier" type="Emphasized" icon="sap-icon://add" press="createLuthier"/>
             </OverflowToolbar>
         </headerToolbar>
         <columns>
-            <Column id="IDGenColumn1" width="5em">
+            <Column id="IDGenColumn1" width="5px">
                 <Text id="IDGenText1" text="Id Luthier"/>
             </Column>
-            <Column id="IDGenColumn2" width="5em">
+            <Column id="IDGenColumn2" width="10px">
                 <Text id="IDGenText2" text="Nombre"/>
             </Column>
-            <Column id="IDGenColumn3" width="5em">
+            <Column id="IDGenColumn3" width="10px">
                 <Text id="IDGenTextt3" text="Apellido"/>
             </Column>
-            <Column id="IDGenColumn4" width="5em">
+            <Column id="IDGenColumn4" width="10px">
                 <Text id="IDGenTextt4" text="Localidad"/>
             </Column>
-            <Column id="IDGenColumn5" width="5em">
+            <Column id="IDGenColumn5" width="10px">
                 <Text id="IDGenText5" text="Tipo"/>
             </Column>
-            <Column id="IDGenColumn6" width="5em">
+            <Column id="IDGenColumn6" width="20px">
                 <Text id="IDGenText6" text="Descripción"/>
+            </Column>
+            <Column id="IDGenColumn7" width="5px">
+                <Text id="IDGenText7" />
+            </Column>
+            <Column id="IDGenColumn8" width="5px">
+                <Text id="IDGenText8" />
             </Column>
         </columns>
         <items>
@@ -38,7 +44,8 @@
                     <Text id="Localidad" text="{Localidad}"/>
                     <Text id="Tipodeinstrumento" text="{TipoInstrumento}"/>
                     <Text id="Descripcion" text="{Descripcion}"/>
-                    <Button id="_IDGenButton1" text="Borrar"/>
+                    <Button id="_IDGenButton2" type="Default" icon="sap-icon://edit"/>
+                    <Button id="_IDGenButton1" type="Negative" icon="sap-icon://delete" press="deleteLuthier"/>
                 </cells>
             </ColumnListItem>
         </items>

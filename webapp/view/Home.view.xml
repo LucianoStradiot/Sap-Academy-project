@@ -3,7 +3,7 @@
     xmlns:layout="sap.ui.layout"
     xmlns="sap.ui.webc.main"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:l="sap.ui.layout" height="100%">
+    xmlns:l="sap.ui.layout" height="auto">
     <l:VerticalLayout id="_IDGenVerticalLayout1" class="sapUiContentPadding" width="100%">
         <Card id="_IDGenCard1" width="300px">
             <header>
