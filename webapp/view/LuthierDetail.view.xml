@@ -1,0 +1,45 @@
+<mvc:View id="_IDGenView1" height="100%" controllerName="aca20241q.controller.LuthierDetail"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Page id="Instrumentos" showHeader="false" enableScrolling="false">
+        <Table id="_IDGenTable1" items="{/ToInstrumentoSet}">
+            <headerToolbar>
+                <OverflowToolbar id="_IDGenOverflowToolbar1">
+                    <Title id="_IDGenTitle1" text="Instrumentos {Nombre}{Apellido}" level="H2"/>
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="_IDGenColumn1" width="12em">
+                    <Text id="_IDGenText1" text="Id Luthier"/>
+                </Column>
+                <Column id="_IDGenColumn2" width="12em">
+                    <Text id="_IDGenText2" text="Nombre"/>
+                </Column>
+                <Column id="_IDGenColumn3" width="12em">
+                    <Text id="_IDGenText3" text="Tipo"/>
+                </Column>
+                <Column id="_IDGenColumn4" width="12em">
+                    <Text id="_IDGenText4" text="Año fabricación"/>
+                </Column>
+                <Column id="_IDGenColumn5" width="12em">
+                    <Text id="_IDGenText5" text="Precio"/>
+                </Column>
+                <Column id="_IDGenColumn6" width="12em">
+                    <Text id="_IDGenText6" text="Descripción"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="_IDGenColumnListItem1">
+                    <cells>
+                        <Text id="IdLuthiers" text="{IdLuthier}"/>
+                        <Text id="NombreInstrumento" text="{NombreInstrumento}"/>
+                        <Text id="TipoInstrumento" text="{TipoInstrumento}"/>
+                        <Text id="AnioFabricacion" text="{AnioFabricacion}"/>
+                        <Text id="Precio" text="USD {Precio}"/>
+                        <Text id="Descripcionn" text="{Descripcion}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>

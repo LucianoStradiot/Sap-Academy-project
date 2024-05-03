@@ -1,21 +1,19 @@
 <core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:form="sap.ui.layout.form">
-    <Dialog id="_IDGenDialog1" title="Agregar Luthier" contentWidth="30%">
+    <Dialog id="_IDGenDialog1" title="Agregar Luthier" state="Information" titleAlignment="Center" contentWidth="30%">
         <content>
             <form:SimpleForm id="SimpleFormDisplay480" editable="false" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
-                <form:content>
-                    <Label id="_IDGenLabel1" text="id" />
-                    <Input id="id" value="{CreateLuthier>/IdLuthier}" valueLiveUpdate="true"/>
-                    <Label id="_IDGenLabel2" text="Nombre" />
+                <form:content >
+                    <Label id="_IDGenLabel2" text="Nombre" class="labelForm"/>
                     <Input id="nombreInput" value="{CreateLuthier>/Nombre}" valueLiveUpdate="true"/>
-                    <Label id="_IDGenLabel3" text="Apellido" />
+                    <Label id="_IDGenLabel3" text="Apellido" class="labelForm"/>
                     <Input id="apellidoInput" value="{CreateLuthier>/Apellido}" valueLiveUpdate="true"/>
-                    <Label id="_IDGenLabel4" text="Localidad" />
+                    <Label id="_IDGenLabel4" text="Localidad" class="labelForm"/>
                     <Input id="localidadInput" value="{CreateLuthier>/Localidad}" valueLiveUpdate="true"/>
-                    <Label id="_IDGenLabel5" text="Tipo de Instrumento" />
+                    <Label id="_IDGenLabel5" text="Tipo de Instrumento" class="labelForm"/>
                     <Input id="tipoInstrumentoInput" value="{CreateLuthier>/TipoInstrumento}" valueLiveUpdate="true"/>
-                    <Label id="_IDGenLabel6" text="Descripción" />
+                    <Label id="_IDGenLabel6" text="Descripción" class="labelForm"/>
                     <TextArea id="descripcionInput" value="{CreateLuthier>/Descripcion}" valueLiveUpdate="true" maxLength="40"/>
                 </form:content>
                 <form:layoutData>
@@ -27,7 +25,7 @@
             <Button id="_IDGenButton1" text="Agregar" press=".onCreateLuthierPress" type="Emphasized" />
         </beginButton>
         <endButton>
-            <Button id="_IDGenButton2" text="Cancelar" press=".onCloseLuthierPress" />
+            <Button id="_IDGenButton2" text="Cancelar" press=".onCloseLuthierPress" type="Reject" />
         </endButton>
     </Dialog>
 </core:FragmentDefinition>

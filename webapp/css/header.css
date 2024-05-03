@@ -1,0 +1,9 @@
+.containerImage {
+  width: 100%;
+  max-height: 200px;
+  height: 100%;
+}
+
+.tabContainer {
+  border-radius: 0 0 10px 10px;
+}

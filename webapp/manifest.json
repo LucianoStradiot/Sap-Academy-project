@@ -84,9 +84,10 @@
     },
     "resources": {
       "css": [
-        {
-          "uri": "css/style.css"
-        }
+        { "uri": "css/main.css" },
+        { "uri": "css/header.css" },
+        { "uri": "css/home.css" },
+        { "uri": "css/addLuthier.css" }
       ],
       "resourceRootPaths": ["images"]
     },

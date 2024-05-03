@@ -1,0 +1,54 @@
+.logo {
+  border-radius: 10px;
+  width: 100%;
+  max-width: 200px;
+  max-height: 200px;
+  height: 100%;
+}
+
+.containerFather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.containerChild {
+  position: relative;
+  padding: 10px;
+  margin-top: 15px;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0px 1px 4px #0000003d;
+  background-color: rgba(255, 255, 255, 0.143);
+}
+
+.description {
+  font-size: 14px;
+  color: #000;
+}
+
+@media only screen and (min-width: 768px) {
+  .logo {
+    width: 100%;
+    max-width: 600px;
+    max-height: 400px;
+    height: 100%;
+  }
+
+  .containerFather {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .containerChild {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    width: 40%;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+}

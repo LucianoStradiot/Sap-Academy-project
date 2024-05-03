@@ -2,8 +2,15 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
-    <Page id="page" title="{i18n>title}" showHeader="false">
+    <Page id="page" title="{i18n>title}" showHeader="false" backgroundDesign="Standard">
         <core:Fragment fragmentName="aca20241q.view.fragments.Header" />
-        <VBox id="contentArea"></VBox>
+        <VBox id="contentArea" class="generalImage"></VBox>
+        <footer>
+            <Toolbar id="_IDGenToolbar1">
+                <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                <Text id="_IDGenText2" text="Contacto: info@luthiershop.com" />
+                <Button id="_IDGenButton1" icon="sap-icon://linkedin" press="onLinkedInPress" />
+            </Toolbar>
+        </footer>
     </Page>
 </mvc:View>

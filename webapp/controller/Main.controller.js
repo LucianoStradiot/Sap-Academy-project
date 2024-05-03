@@ -38,7 +38,6 @@ sap.ui.define(
         this.getView().addDependent(oView);
         return oView;
       },
-
       loadHomeView: function () {
         var oContentArea = this.getView().byId("contentArea");
         oContentArea.destroyItems();

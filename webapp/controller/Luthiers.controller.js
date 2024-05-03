@@ -10,6 +10,7 @@ sap.ui.define(
       },
 
       createLuthier: function (oEvent) {
+        oEvent.getParameter("selected");
         if (!this.oCreateFragment) {
           this.oCreateFragment = sap.ui.core.Fragment.load({
             name: "aca20241q.view.fragments.AddLuthier",
@@ -97,6 +98,38 @@ sap.ui.define(
               }
             },
           }
+        );
+      },
+
+      onPress: function (oEvent) {
+        oEvent.getParameter("selected");
+        MessageToast.show("Pressed item with ID " + oEvent.getSource().getId());
+      },
+
+      onModeChange: function (oEvent) {
+        var sMode = oEvent.getParameter("item").getKey();
+        this.byId("gridList").setMode(sMode);
+        this.byId("gridList").setHeaderText("GridList with mode " + sMode);
+      },
+
+      onSelectionChange: function (oEvent) {
+        var bSelected = oEvent.getParameter("selected");
+        MessageToast.show(
+          (bSelected ? "Selected" : "Unselected") +
+            " item with ID " +
+            oEvent.getParameter("listItem").getId()
+        );
+      },
+
+      onDelete: function (oEvent) {
+        MessageToast.show(
+          "Delete item with ID " + oEvent.getParameter("listItem").getId()
+        );
+      },
+
+      onDetailPress: function (oEvent) {
+        MessageToast.show(
+          "Request details for item with ID " + oEvent.getSource().getId()
         );
       },
     });
