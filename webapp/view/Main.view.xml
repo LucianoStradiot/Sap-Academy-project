@@ -2,9 +2,38 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
-    <Page id="page" title="{i18n>title}" showHeader="false" backgroundDesign="Standard">
-        <core:Fragment fragmentName="aca20241q.view.fragments.Header" />
-        <VBox id="contentArea" class="generalImage"></VBox>
+    <Page id="_IDGenPage1" enableScrolling="false" showHeader="false">
+        <!-- Contenido fijo aquí, como el banner y la barra de navegación -->
+        <FlexBox id="page2" renderType="Bare" wrap="NoWrap" alignItems="Start" justifyContent="Center">
+            <VBox id="_IDGenVBox1" width="100%">
+                <VBox id="_IDGenVBox2" justifyContent="Center" class="containerImage">
+                    <Image id="_IDGenImage1" src="/images/banner.jpg" width="100%" alt="Banner Image" densityAware="false" decorative="false"/>
+                </VBox>
+                <ObjectHeader id="_IDGenObjectHeader1" title="Luthier Shop" responsive="true" class="sapUiResponsivePadding--header ">
+                    <ObjectAttribute id="_IDGenObjectAttribute1" text="Bienvenidos!" />
+                    <ObjectAttribute id="_IDGenObjectAttribute2" text="Aquí encontrarás todo tipo de instrumentos musicales de diferentes gamas y géneros." />
+                </ObjectHeader>
+                <IconTabHeader id="_IDGenIconTabBar1" select="handleNav" class="tabContainer">
+                    <items>
+                        <IconTabFilter id="HomeI" key="Home" text="Home" />
+                        <IconTabFilter id="LuthiersTableI" key="Luthiers" text="Luthiers" />
+                        <IconTabFilter id="InstrumentosI" key="Instrumentos" text="Instrumentos" />
+                    </items>
+                </IconTabHeader >
+            </VBox>
+        </FlexBox>
+        <!-- Contenido dinámico dentro del NavContainer -->
+        <NavContainer id="navCon" initialPage="Home">
+            <Page id="Home" showHeader="false">
+                <mvc:XMLView id="Homeview" class="generalImage" viewName="aca20241q.view.Home" />
+            </Page>
+            <Page id="Luthiers">
+                <mvc:XMLView id="LuthiersView" viewName="aca20241q.view.Luthiers" />
+            </Page>
+            <Page id="Instrumentos">
+                <mvc:XMLView id="_IDGenXMLView3" class="generalImage" viewName="aca20241q.view.Instrumentos" />
+            </Page>
+        </NavContainer>
         <footer>
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />

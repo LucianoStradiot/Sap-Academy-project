@@ -1,5 +1,9 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast"],
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageToast",
+    "sap/ui/core/mvc/XMLView",
+  ],
   function (Controller, MessageToast) {
     "use strict";
     var that;
@@ -7,6 +11,13 @@ sap.ui.define(
     return Controller.extend("aca20241q.controller.Luthiers", {
       onInit: function () {
         that = this;
+        sap.ui.core.UIComponent.getRouterFor(this);
+      },
+
+      handleNav: function (oEvent) {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        var sKey = oEvent.getParameter("key");
+        oRouter.navTo(sKey);
       },
 
       createLuthier: function (oEvent) {
@@ -38,11 +49,6 @@ sap.ui.define(
             oDialog.open();
           }.bind(that)
         );
-      },
-
-      _afterCloseDialog: function (oEvent) {
-        oEvent.getSource().destroy();
-        that.oCreateFragment = null;
       },
 
       onCreateLuthierPress: function (oEvent) {
@@ -102,11 +108,21 @@ sap.ui.define(
       },
 
       onPress: function (oEvent) {
-        oEvent.getParameter("selected");
-        MessageToast.show("Pressed item with ID " + oEvent.getSource().getId());
+        var oListItem = oEvent.getParameter("listItem");
+        console.log("ListItem:", oListItem);
+        var sLuthier = oListItem.getBindingContext().getProperty("IdLuthier");
+        var router = that.getOwnerComponent().getRouter();
+        router.navTo("LuthierDetail", {
+          idLuthier: sLuthier,
+        });
       },
 
-      onModeChange: function (oEvent) {
+      _afterCloseDialog: function (oEvent) {
+        oEvent.getSource().destroy();
+        that.oCreateFragment = null;
+      },
+
+      /* onModeChange: function (oEvent) {
         var sMode = oEvent.getParameter("item").getKey();
         this.byId("gridList").setMode(sMode);
         this.byId("gridList").setHeaderText("GridList with mode " + sMode);
@@ -131,7 +147,7 @@ sap.ui.define(
         MessageToast.show(
           "Request details for item with ID " + oEvent.getSource().getId()
         );
-      },
+      }, */
     });
   }
 );

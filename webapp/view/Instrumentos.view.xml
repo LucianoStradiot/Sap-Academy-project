@@ -2,6 +2,24 @@
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
     <Page id="Instrumentos" showHeader="false" enableScrolling="false">
+        <FlexBox id="page2" renderType="Bare" wrap="NoWrap" alignItems="Start" justifyContent="Center">
+            <VBox id="_IDGenVBox1" width="100%">
+                <VBox id="_IDGenVBox2" justifyContent="Center" class="containerImage">
+                    <Image id="_IDGenImage1" src="/images/banner.jpg" width="100%" alt="Banner Image" densityAware="false" decorative="false"/>
+                </VBox>
+                <ObjectHeader id="_IDGenObjectHeader1" title="Luthier Shop" responsive="true" class="sapUiResponsivePadding--header ">
+                    <ObjectAttribute id="_IDGenObjectAttribute1" text="Bienvenidos!" />
+                    <ObjectAttribute id="_IDGenObjectAttribute2" text="Aquí encontrarás todo tipo de instrumentos musicales de diferentes gamas y géneros." />
+                </ObjectHeader>
+                <IconTabHeader id="_IDGenIconTabBar1" select="handleNav" class="tabContainer">
+                    <items>
+                        <IconTabFilter id="HomeI" key="Home" text="Home" />
+                        <IconTabFilter id="LuthiersTableI" key="Luthiers" text="Luthiers" />
+                        <IconTabFilter id="InstrumentosI" key="Instrumentos" text="Instrumentos" />
+                    </items>
+                </IconTabHeader >
+            </VBox>
+        </FlexBox>
         <Table id="_IDGenTable1" items="{/InstrumentoSet}">
             <headerToolbar>
                 <OverflowToolbar id="_IDGenOverflowToolbar1">
@@ -43,5 +61,12 @@
                 </ColumnListItem>
             </items>
         </Table>
+        <footer>
+            <Toolbar id="_IDGenToolbar1">
+                <ToolbarSpacer id="_IDGenToolbarSpacer2" />
+                <Text id="_IDGenText8" text="Contacto: info@luthiershop.com" />
+                <Button id="_IDGenButton1" icon="sap-icon://linkedin" press="onLinkedInPress" />
+            </Toolbar>
+        </footer>
     </Page>
 </mvc:View>

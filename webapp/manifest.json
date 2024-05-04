@@ -106,6 +106,26 @@
           "name": "RouteMain",
           "pattern": ":?query:",
           "target": ["TargetMain"]
+        },
+        {
+          "name": "Home",
+          "pattern": "Home",
+          "target": ["TargetMain"]
+        },
+        {
+          "name": "Luthiers",
+          "pattern": "Luthiers",
+          "target": ["TargetLuthiers"]
+        },
+        {
+          "name": "Instrumentos",
+          "pattern": "Instrumentos",
+          "target": ["TargetInstrumentos"]
+        },
+        {
+          "name": "LuthierDetail",
+          "pattern": "LuthierDetail/{idLuthier}",
+          "target": ["TargetLuthierDetail"]
         }
       ],
       "targets": {
@@ -114,7 +134,40 @@
           "transition": "slide",
           "clearControlAggregation": false,
           "viewId": "Main",
-          "viewName": "Main"
+          "viewName": "Main",
+          "viewLevel": 1
+        },
+        "TargetHome": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "HomeId",
+          "viewName": "Home",
+          "viewLevel": 1
+        },
+        "TargetLuthiers": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "LuthierId",
+          "viewName": "Luthiers",
+          "viewLevel": 1
+        },
+        "TargetInstrumentos": {
+          "viewType": "XML",
+          "transition": "show",
+          "clearControlAggregation": false,
+          "viewId": "InstrumentosId",
+          "viewName": "Instrumentos",
+          "viewLevel": 1
+        },
+        "TargetLuthierDetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "LuthierId",
+          "viewName": "Luthier",
+          "viewLevel": 1
         }
       }
     },
