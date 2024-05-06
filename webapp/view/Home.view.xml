@@ -6,8 +6,8 @@
                 <Image id="_IDGenImage1" src="/images/logo.png" class="logo" decorative="false" alt="Luthier Shop Logo" densityAware="false" />
             </VBox>
             <VBox id="_IDGenVBox2" class="containerChild">
-                <Text id="_IDGenText1" text="Somos una tienda especializada en ofrecer instrumentos musicales de la más alta calidad para todos los géneros y niveles de experiencia. Nuestro objetivo es brindar a nuestros clientes una experiencia de compra excepcional, asesorándolos de manera personalizada para encontrar el instrumento perfecto que se adapte a sus necesidades y habilidades." class="description sapUiLargeMarginBottom" wrappingType="Hyphenated" />
-                <Text id="_IDGenText2" text="En nuestra tienda, valoramos la pasión por la música y nos esforzamos por crear un ambiente acogedor y amigable donde podrás encontrar instrumentos de todo tipo, hechos por excelentisimos luthieres" class="description" wrappingType="Hyphenated" />
+                <Text id="_IDGenText1" text="¡Bienvenido a Luthier Shop! Un espacio virtual dedicado a la creatividad y habilidad de los constructores de instrumentos musicales. Este portal ofrece a los luthiers de todo el mundo la oportunidad de registrar sus creaciones únicas y presentarlas a una audiencia global de amantes de la música y músicos profesionales.." class="description sapUiLargeMarginBottom" wrappingType="Hyphenated" />
+                <Text id="_IDGenText2" text="Unite y comparí tu pasión por la construcción de instrumentos musicales con el mundo. Ya sea que seas un luthier experimentado o estés empezando tu viaje en la fabricación de instrumentos, aquí encontrarás un espacio para inspirarte, conectarte y crecer como artista." class="description" wrappingType="Hyphenated" />
             </VBox>
         </FlexBox>
     </FlexBox>

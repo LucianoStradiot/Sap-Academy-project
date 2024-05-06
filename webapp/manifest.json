@@ -87,7 +87,8 @@
         { "uri": "css/main.css" },
         { "uri": "css/header.css" },
         { "uri": "css/home.css" },
-        { "uri": "css/addLuthier.css" }
+        { "uri": "css/addLuthier.css" },
+        { "uri": "css/luthiersDetail.css" }
       ],
       "resourceRootPaths": ["images"]
     },
@@ -123,9 +124,9 @@
           "target": ["TargetInstrumentos"]
         },
         {
-          "name": "LuthierDetail",
-          "pattern": "LuthierDetail/{idLuthier}",
-          "target": ["TargetLuthierDetail"]
+          "name": "LuthiersDetail",
+          "pattern": "LuthiersDetail/{idLuthier}",
+          "target": ["TargetLuthiersDetail"]
         }
       ],
       "targets": {
@@ -135,14 +136,6 @@
           "clearControlAggregation": false,
           "viewId": "Main",
           "viewName": "Main",
-          "viewLevel": 1
-        },
-        "TargetHome": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "HomeId",
-          "viewName": "Home",
           "viewLevel": 1
         },
         "TargetLuthiers": {
@@ -155,18 +148,18 @@
         },
         "TargetInstrumentos": {
           "viewType": "XML",
-          "transition": "show",
+          "transition": "slide",
           "clearControlAggregation": false,
           "viewId": "InstrumentosId",
           "viewName": "Instrumentos",
           "viewLevel": 1
         },
-        "TargetLuthierDetail": {
+        "TargetLuthiersDetail": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "LuthierId",
-          "viewName": "Luthier",
+          "viewId": "LuthiersId",
+          "viewName": "LuthiersDetail",
           "viewLevel": 1
         }
       }

@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar">
+    <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" showGoOnFB="true" showFilterConfiguration="false" reset="onRestoreFilterFields"
+        xmlns:core="sap.ui.core"
+        xmlns:fb="sap.ui.comp.filterbar"
+        xmlns="sap.m" class="customFilter">
+        <fb:filterGroupItems>
+            <fb:FilterGroupItem id="_IDGenFilterGroupItem1" name="Apellido" label="Apellido" groupName="Group1" visibleInFilterBar="true">
+                <fb:control>
+                    <Input id="ApellidoInput" name="Apellido" showValueHelp="true" change="onChangeApellido" valueHelpRequest="onValueHelpApellido" showClearIcon="true" busyIndicatorDelay="0">
+                    </Input>
+                </fb:control>
+            </fb:FilterGroupItem>
+            <fb:FilterGroupItem id="_IDGenFilterGroupItem2" name="Localidad" label="Localidad" groupName="Group1" visibleInFilterBar="true">
+                <fb:control>
+                    <Input id="LocalidadInput" name="Localidad" showValueHelp="true" change="onChangeLocalidad" valueHelpRequest="onValueHelpLocalidad" showClearIcon="true" busyIndicatorDelay="0">
+                    </Input>
+                </fb:control>
+            </fb:FilterGroupItem>
+            <fb:FilterGroupItem id="_IDGenFilterGroupItem3" name="TipoInstrumento" label="Tipo de instrumento" groupName="Group1" visibleInFilterBar="true">
+                <fb:control>
+                    <Input id="TipoInstrumentoInput" name="TipoInstrumento" showValueHelp="true" change="onChangeTipoInstrumento" valueHelpRequest="onValueHelpTipoInstrumento" showClearIcon="true" busyIndicatorDelay="0">
+                    </Input>
+                </fb:control>
+            </fb:FilterGroupItem>
+        </fb:filterGroupItems>
+    </fb:FilterBar>
+</core:FragmentDefinition>

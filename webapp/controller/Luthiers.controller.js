@@ -11,11 +11,10 @@ sap.ui.define(
     return Controller.extend("aca20241q.controller.Luthiers", {
       onInit: function () {
         that = this;
-        sap.ui.core.UIComponent.getRouterFor(this);
       },
 
       handleNav: function (oEvent) {
-        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        var oRouter = this.getOwnerComponent().getRouter();
         var sKey = oEvent.getParameter("key");
         oRouter.navTo(sKey);
       },
@@ -44,11 +43,19 @@ sap.ui.define(
             }.bind(that)
           );
         }
-        that.oCreateFragment.then(
-          function (oDialog) {
-            oDialog.open();
-          }.bind(that)
-        );
+        if (this.oCreateFragment) {
+          this.oCreateFragment.then(
+            function (oDialog) {
+              console.log(oDialog);
+              oDialog.open();
+            }.bind(that)
+          );
+        }
+      },
+
+      _afterCloseDialog: function (oEvent) {
+        oEvent.getSource().destroy();
+        that.oCreateFragment = null;
       },
 
       onCreateLuthierPress: function (oEvent) {
@@ -67,11 +74,29 @@ sap.ui.define(
         });
       },
       onCloseLuthierPress: function (oEvent) {
-        that.oCreateFragment.then(
+        this.oCreateFragment.then(
           function (oDialog) {
+            console.log(oDialog);
             oDialog.close();
           }.bind(that)
         );
+      },
+
+      deleteSelected: function () {
+        var gridList = this.getView().byId("gridList");
+        var selectedItems = gridList.getSelectedItems();
+
+        if (selectedItems.length > 0) {
+          var model = this.getView().getModel();
+          selectedItems.forEach(function (item) {
+            var context = item.getBindingContext();
+            var path = context.getPath();
+            model.remove(path);
+          });
+          gridList.removeSelections();
+        } else {
+          sap.m.MessageToast.show("Please select at least one item to delete.");
+        }
       },
 
       deleteLuthier: function (oEvent) {
@@ -107,19 +132,131 @@ sap.ui.define(
         );
       },
 
-      onPress: function (oEvent) {
+      updateLuthier: function (oEvent) {
+        // Obtener el índice del luthier seleccionado en la lista
+        var sPath = oEvent.getSource().getBindingContext().getPath();
+
+        // Obtener el modelo de datos
+        var oDataModel = oEvent.getSource().getModel();
+
+        // Obtener los datos del luthier seleccionado
+        var oLuthier = oDataModel.getProperty(sPath);
+
+        // Cargar el fragmento para la actualización del luthier
+        if (!this.oUpdateFragment) {
+          this.oUpdateFragment = sap.ui.core.Fragment.load({
+            name: "aca20241q.view.fragments.UpdateLuthier",
+            controller: that, // Asegúrate de que el controlador está accesible aquí
+          }).then(
+            function (oDialog) {
+              that.getView().addDependent(oDialog);
+              // Establecer el modelo con los datos del luthier seleccionado
+              let oModel = new sap.ui.model.json.JSONModel(oLuthier);
+              oModel.setDefaultBindingMode("TwoWay");
+              oDialog.setModel(oModel, "UpdateLuthier");
+              oDialog.attachAfterClose(that._afterCloseUpdateDialog);
+              return oDialog;
+            }.bind(that)
+          );
+        }
+
+        // Abrir el fragmento de actualización
+        this.oUpdateFragment.then(function (oDialog) {
+          oDialog.open();
+        });
+      },
+
+      onUpdateLuthierPress: function (oEvent) {
+        // Obtener los datos actualizados del luthier del modelo
+        let oUpdatedLuthier = oEvent
+          .getSource()
+          .getModel("UpdateLuthier")
+          .getData();
+
+        // Obtener el modelo de datos
+        var oDataModel = that.getView().getModel();
+
+        // Actualizar el luthier en el servidor
+        oDataModel.update(oUpdatedLuthier.IdLuthier, oUpdatedLuthier, {
+          success: function (oResponse) {
+            sap.m.MessageBox.success("Luthier actualizado");
+            that.getOwnerComponent().getModel().refresh(true, true);
+            that.onCloseUpdateLuthierPress();
+          },
+          error: function () {
+            sap.m.MessageBox.error("Error al intentar actualizar el luthier");
+          },
+        });
+      },
+
+      onCloseUpdateLuthierPress: function (oEvent) {
+        // Cerrar el fragmento de actualización
+        this.oUpdateFragment.then(function (oDialog) {
+          oDialog.close();
+        });
+      },
+
+      _afterCloseUpdateDialog: function (oEvent) {
+        // Limpiar y destruir el fragmento de actualización
+        oEvent.getSource().destroy();
+        that.oUpdateFragment = null;
+      },
+
+      onPressNavigation: function (oEvent) {
         var oListItem = oEvent.getParameter("listItem");
-        console.log("ListItem:", oListItem);
         var sLuthier = oListItem.getBindingContext().getProperty("IdLuthier");
         var router = that.getOwnerComponent().getRouter();
-        router.navTo("LuthierDetail", {
+        router.navTo("LuthiersDetail", {
           idLuthier: sLuthier,
         });
       },
 
-      _afterCloseDialog: function (oEvent) {
-        oEvent.getSource().destroy();
-        that.oCreateFragment = null;
+      onSearch: function (oEvent) {
+        var aFilters = [],
+          sApellido,
+          sLocalidad,
+          sTipoInstrumento;
+        var aSelectionSet = oEvent.getParameter("selectionSet");
+        aSelectionSet.forEach((x) => {
+          switch (x.getName()) {
+            case "Apellido":
+              sApellido = x.getValue();
+              break;
+            case "Localidad":
+              sLocalidad = x.getValue();
+              break;
+            case "TipoInstrumento":
+              sTipoInstrumento = x.getValue();
+              break;
+            default:
+          }
+        });
+        if (sApellido) {
+          let oFilterApellido = new sap.ui.model.Filter({
+            path: "Apellido",
+            operator: "EQ",
+            value1: sApellido,
+          });
+          aFilters.push(oFilterApellido);
+        }
+        if (sLocalidad) {
+          let oFilterLocalidad = new sap.ui.model.Filter({
+            path: "Localidad",
+            operator: "EQ",
+            value1: sLocalidad,
+          });
+          aFilters.push(oFilterLocalidad);
+        }
+        if (sTipoInstrumento) {
+          let oFilterTipoInstrumento = new sap.ui.model.Filter({
+            path: "TipoInstrumento",
+            operator: "EQ",
+            value1: sTipoInstrumento,
+          });
+          aFilters.push(oFilterTipoInstrumento);
+        }
+
+        this.getView().byId("gridList").getBinding("items").filter(aFilters);
       },
 
       /* onModeChange: function (oEvent) {

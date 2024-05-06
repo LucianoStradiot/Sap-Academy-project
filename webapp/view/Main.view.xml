@@ -22,18 +22,7 @@
                 </IconTabHeader >
             </VBox>
         </FlexBox>
-        <!-- Contenido dinámico dentro del NavContainer -->
-        <NavContainer id="navCon" initialPage="Home">
-            <Page id="Home" showHeader="false">
-                <mvc:XMLView id="Homeview" class="generalImage" viewName="aca20241q.view.Home" />
-            </Page>
-            <Page id="Luthiers">
-                <mvc:XMLView id="LuthiersView" viewName="aca20241q.view.Luthiers" />
-            </Page>
-            <Page id="Instrumentos">
-                <mvc:XMLView id="_IDGenXMLView3" class="generalImage" viewName="aca20241q.view.Instrumentos" />
-            </Page>
-        </NavContainer>
+        <mvc:XMLView id="Homeview" class="generalImage" viewName="aca20241q.view.Home" />
         <footer>
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
