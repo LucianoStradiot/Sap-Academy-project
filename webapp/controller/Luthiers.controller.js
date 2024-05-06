@@ -16,9 +16,6 @@ sap.ui.define(
         if (mode === "SingleSelectMaster") {
           gridList.attachSelectionChange(this.onPressNavigation);
         }
-        if (mode === "MultiSelect") {
-          gridList.attachSelectionChange(this.deleteSelected);
-        }
       },
 
       handleNav: function (oEvent) {
@@ -27,22 +24,29 @@ sap.ui.define(
         oRouter.navTo(sKey);
       },
 
+      onPressDelete: function (oEvent) {
+        this.onModeChange(oEvent);
+      },
+
       onModeChange: function (oEvent) {
-        var sMode = oEvent.getParameter("item").getKey();
         var oButton = this.byId("idDeleteButton2");
         var gridList = this.getView().byId("gridList");
-        gridList.setMode(sMode);
 
-        if (sMode === "SingleSelectMaster") {
-          gridList.attachSelectionChange(this.onPressNavigation);
-        }
-        if (sMode === "Delete") {
+        // Verifica el modo actual del GridList
+        var currentMode = gridList.getMode();
+
+        // Cambia al otro modo
+        var newMode =
+          currentMode === "SingleSelectMaster"
+            ? "Delete"
+            : "SingleSelectMaster";
+
+        // Establece el nuevo modo
+        gridList.setMode(newMode);
+
+        // Si se cambió al modo "Delete", desvincula la función deleteLuthier del evento de selección
+        if (newMode === "Delete") {
           gridList.detachSelectionChange(this.deleteLuthier);
-        }
-        if (sMode === "MultiSelect") {
-          oButton.setVisible(true);
-        } else {
-          oButton.setVisible(false);
         }
       },
 
@@ -110,6 +114,73 @@ sap.ui.define(
         );
       },
 
+      updateLuthier: function (oEvent) {
+        var oListItem = oEvent.getSource();
+        var sPath = oListItem.getBindingContext().getPath();
+        var oDataModel = oListItem.getModel();
+        var oLuthier = oDataModel.getProperty(sPath);
+
+        if (!this.oUpdateFragment) {
+          this.oUpdateFragment = sap.ui.core.Fragment.load({
+            name: "aca20241q.view.fragments.UpdateLuthier",
+            controller: this,
+          }).then(function (oDialog) {
+            that.getView().addDependent(oDialog);
+            var oModel = new sap.ui.model.json.JSONModel(oLuthier);
+            oModel.setDefaultBindingMode("TwoWay");
+            oDialog.setModel(oModel, "UpdateLuthier");
+            oDialog.attachAfterClose(that._afterCloseUpdateDialog);
+            console.log(oDialog);
+            return oDialog;
+          });
+        }
+        this.oUpdateFragment.then(function (oDialog) {
+          oDialog.open();
+        });
+      },
+
+      _afterCloseUpdateDialog: function (oEvent) {
+        this.oUpdateFragment
+          .then(function (oDialog) {
+            oDialog.destroy();
+          })
+          .catch(function (error) {
+            console.error(
+              "Error al destruir el diálogo de actualización:",
+              error
+            );
+          });
+        this.oUpdateFragment = null;
+      },
+
+      onUpdateLuthierPress: function (oEvent) {
+        let oEntry = oEvent.getSource().getModel("UpdateLuthier").getData();
+        let oId = oEvent
+          .getSource()
+          .getBindingContext()
+          .getProperty("IdLuthier");
+        var oDataModel = that.getView().getModel();
+        oDataModel.update(`/LuthiersSet('${oId}')`, oEntry, {
+          success: function (oResponse) {
+            var result = oResponse?.results;
+            sap.m.MessageBox.success("Luthier actualizado correctamente");
+            that.getOwnerComponent().getModel().refresh(true, true);
+            that.onCloseLuthierPress();
+          },
+          error: function () {
+            sap.m.MessageBox.error(
+              "Error al intentar actualizar un nuevo luthier"
+            );
+          },
+        });
+      },
+
+      onCloseUpdateLuthierPress: function () {
+        this.oUpdateFragment.then(function (oDialog) {
+          oDialog.close();
+        });
+      },
+
       deleteLuthier: function (oEvent) {
         var sPath = oEvent
           .getParameter("listItem")
@@ -146,124 +217,14 @@ sap.ui.define(
         );
       },
 
-      deleteSelected: function () {
-        var gridList = this.getView().byId("gridList");
-        var selectedItems = gridList.getSelectedItems();
-
-        if (selectedItems.length > 0) {
-          var model = this.getView().getModel();
-          var promises = [];
-          selectedItems.forEach(function (item) {
-            var context = item.getBindingContext();
-            var path = context.getPath();
-            var promise = new Promise(function (resolve, reject) {
-              model.remove(path, {
-                success: function () {
-                  sap.m.MessageToast.show("Elemento eliminado correctamente");
-                  resolve();
-                },
-                error: function (oError) {
-                  sap.m.MessageToast.show(
-                    "Error al eliminar el elemento: " + JSON.stringify(oError)
-                  );
-                  reject(oError);
-                },
-              });
-            });
-            promises.push(promise);
-          });
-
-          Promise.all(promises)
-            .then(function () {
-              gridList.removeSelections();
-            })
-            .catch(function (error) {
-              console.error("Error al eliminar elementos:", error);
-            });
-        } else {
-          sap.m.MessageToast.show(
-            "Por favor seleccione al menos un elemento para eliminar."
-          );
-        }
-      },
-
-      updateLuthier: function (oEvent) {
-        // Obtener el índice del luthier seleccionado en la lista
-        var sPath = oEvent.getSource().getBindingContext().getPath();
-
-        // Obtener el modelo de datos
-        var oDataModel = oEvent.getSource().getModel();
-
-        // Obtener los datos del luthier seleccionado
-        var oLuthier = oDataModel.getProperty(sPath);
-
-        // Cargar el fragmento para la actualización del luthier
-        if (!this.oUpdateFragment) {
-          this.oUpdateFragment = sap.ui.core.Fragment.load({
-            name: "aca20241q.view.fragments.UpdateLuthier",
-            controller: that, // Asegúrate de que el controlador está accesible aquí
-          }).then(
-            function (oDialog) {
-              that.getView().addDependent(oDialog);
-              let oModel = new sap.ui.model.json.JSONModel(oLuthier);
-              oModel.setDefaultBindingMode("TwoWay");
-              oDialog.setModel(oModel, "UpdateLuthier");
-              oDialog.attachAfterClose(that._afterCloseUpdateDialog);
-              return oDialog;
-            }.bind(that)
-          );
-        }
-        this.oUpdateFragment.then(function (oDialog) {
-          oDialog.open();
-        });
-      },
-
-      onUpdateLuthierPress: function (oEvent) {
-        // Obtener los datos actualizados del luthier del modelo
-        let oUpdatedLuthier = oEvent
-          .getSource()
-          .getModel("UpdateLuthier")
-          .getData();
-
-        // Obtener el modelo de datos
-        var oDataModel = that.getView().getModel();
-
-        // Actualizar el luthier en el servidor
-        oDataModel.update(oUpdatedLuthier.IdLuthier, oUpdatedLuthier, {
-          success: function (oResponse) {
-            sap.m.MessageBox.success("Luthier actualizado");
-            that.getOwnerComponent().getModel().refresh(true, true);
-            that.onCloseUpdateLuthierPress();
-          },
-          error: function () {
-            sap.m.MessageBox.error("Error al intentar actualizar el luthier");
-          },
-        });
-      },
-
-      onCloseUpdateLuthierPress: function (oEvent) {
-        this.oUpdateFragment.then(function (oDialog) {
-          oDialog.close();
-        });
-      },
-
-      _afterCloseUpdateDialog: function (oEvent) {
-        oEvent.getSource().destroy();
-        that.oUpdateFragment = null;
-      },
-
       onPressNavigation: function (oEvent) {
-        var oSegmentedButton = that.byId("_IDGenSegmentedButton2");
-        var sSelectedKey = oSegmentedButton.getSelectedKey();
-
-        if (sSelectedKey === "SingleSelectMaster") {
-          var oListItem = oEvent.getParameter("listItem");
-          var sLuthier = oListItem.getBindingContext().getProperty("IdLuthier");
-          var router = that.getOwnerComponent().getRouter();
-          router.navTo("LuthiersDetail", {
-            idLuthier: sLuthier,
-          });
-        }
+        var oListItem = oEvent.getParameter("listItem");
+        console.log(oListItem.getBindingContext());
+        var sLuthier = oListItem.getBindingContext().getProperty("IdLuthier");
+        var router = that.getOwnerComponent().getRouter();
+        router.navTo("LuthiersDetail", {
+          idLuthier: sLuthier,
+        });
       },
 
       onSearch: function (oEvent) {

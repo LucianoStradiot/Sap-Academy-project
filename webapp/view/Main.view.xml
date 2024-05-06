@@ -17,7 +17,6 @@
                     <items>
                         <IconTabFilter id="HomeI" key="Home" text="Home" />
                         <IconTabFilter id="LuthiersTableI" key="Luthiers" text="Luthiers" />
-                        <IconTabFilter id="InstrumentosI" key="Instrumentos" text="Instrumentos" />
                     </items>
                 </IconTabHeader >
             </VBox>

@@ -24,7 +24,7 @@ sap.ui.define(
             this.getView().bindElement({
               path: sPath,
               parameters: {
-                expand: "ToInstrumentoSet", // Expandir la relación con los instrumentos
+                expand: "ToInstrumentoSet",
               },
               events: {
                 dataRequested: function () {

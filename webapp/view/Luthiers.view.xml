@@ -19,7 +19,6 @@
                     <items>
                         <IconTabFilter id="HomeI" key="Home" text="Home" />
                         <IconTabFilter id="LuthiersTableI" key="Luthiers" text="Luthiers" />
-                        <IconTabFilter id="InstrumentosI" key="Instrumentos" text="Instrumentos" />
                     </items>
                 </IconTabHeader >
                 <c:Fragment id="_IDGenFragment1" fragmentName="aca20241q.view.fragments.Filterbar" type="XML" />
@@ -27,19 +26,11 @@
         </FlexBox>
         <VBox id="_IDGenVBox5" direction="RowReverse" justifyContent="SpaceBetween" class="sapUiMediumMarginBeginEnd ">
             <FlexBox id="_IDGenFlexBox6" class="flexbox">
-                <Button id="idDeleteButton2" class="deleteBtn" type="Negative" icon="sap-icon://delete" press="deleteSelected" visible="false"/>
+                <Button id="idDeleteButton2" class="deleteBtn" type="Negative" icon="sap-icon://delete" press="onPressDelete"/>
                 <Button id="idAddButton22" type="Emphasized" icon="sap-icon://add" press="createLuthier"/>
             </FlexBox>
-            <SegmentedButton id="_IDGenSegmentedButton2" width="100%" selectedKey="SingleSelectMaster" class="sapUiSmallMarginTop sapUiSmallMarginEnd" selectionChange="onModeChange">
-                <items>
-                    <SegmentedButtonItem id="_IDGenSegmentedButtonItem4" width="auto" text="Navegación" key="SingleSelectMaster" />
-                    <SegmentedButtonItem id="_IDGenSegmentedButtonItem1" width="auto" text="Borrado múltiple" key="MultiSelect" />
-                    <SegmentedButtonItem id="_IDGenSegmentedButtonItem5" width="auto" text="Eliminar" key="Delete" />
-                </items>
-            </SegmentedButton>
-
         </VBox>
-        <f:GridList id="gridList" mode="SingleSelectMaster" items="{/LuthiersSet}" delete="deleteLuthier" class="sapUiResponsiveContentPadding">
+        <f:GridList id="gridList" mode="SingleSelectMaster" busyIndicatorDelay="true" items="{/LuthiersSet}" delete="deleteLuthier" class="sapUiResponsiveContentPadding">
             <f:customLayout>
                 <grid:GridBasicLayout id="_IDGenGridBasicLayout1" gridTemplateColumns="repeat(auto-fit, minmax(12rem, 1fr))" gridGap="1rem" />
             </f:customLayout>
