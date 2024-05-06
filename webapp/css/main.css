@@ -16,3 +16,11 @@
   opacity: 0.2;
   z-index: -1;
 }
+
+.flexbox {
+  margin-top: 15px;
+}
+
+.deleteBtn {
+  margin-right: 10px;
+}
