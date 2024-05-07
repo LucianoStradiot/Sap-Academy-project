@@ -5,16 +5,18 @@
         <content>
             <form:SimpleForm id="SimpleFormDisplay480" editable="false" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
                 <form:content >
-                    <Label id="_IDGenLabel2" text="Nombre" class="labelForm"/>
-                    <Input id="nombreInput" value="{CreateLuthier>/Nombre}" valueLiveUpdate="true"/>
-                    <Label id="_IDGenLabel3" text="Apellido" class="labelForm"/>
-                    <Input id="apellidoInput" value="{CreateLuthier>/Apellido}" valueLiveUpdate="true"/>
-                    <Label id="_IDGenLabel4" text="Localidad" class="labelForm"/>
-                    <Input id="localidadInput" value="{CreateLuthier>/Localidad}" valueLiveUpdate="true"/>
-                    <Label id="_IDGenLabel5" text="Tipo de Instrumento" class="labelForm"/>
-                    <Input id="tipoInstrumentoInput" value="{CreateLuthier>/TipoInstrumento}" valueLiveUpdate="true"/>
+                    <Label id="_IDGenLabel2w" text="Id de Luthier" class="labelForm"/>
+                    <Input id="IdInput" type="Number" value="{CreateInstrumento>/IdLuthier}" valueLiveUpdate="true"/>
+                    <Label id="_IDGenLabel2" text="Nombre de Instrumento" class="labelForm"/>
+                    <Input id="nombreInput" value="{CreateInstrumento>/NombreInstrumento}" valueLiveUpdate="true"/>
+                    <Label id="_IDGenLabel3" text="Tipo de Instrumento" class="labelForm"/>
+                    <Input id="apellidoInput" value="{CreateInstrumento>/TipoInstrumento}" valueLiveUpdate="true"/>
+                    <Label id="_IDGenLabel4" text="Año de Fabricacion" class="labelForm"/>
+                    <Input id="localidadInput" type="Number" value="{CreateInstrumento>/AnioFabricacion}" valueLiveUpdate="true"/>
+                    <Label id="_IDGenLabel5" text="Precio" class="labelForm"/>
+                    <Input id="tipoInstrumentoInput" type="Number" value="{CreateInstrumento>/PrecioInstrumento}" valueLiveUpdate="true"/>
                     <Label id="_IDGenLabel6" text="Descripción" class="labelForm"/>
-                    <TextArea id="descripcionInput" value="{CreateLuthier>/Descripcion}" valueLiveUpdate="true" maxLength="40"/>
+                    <TextArea id="descripcionInput" value="{CreateInstrumento>/Descripcion}" valueLiveUpdate="true" maxLength="40"/>
                 </form:content>
                 <form:layoutData>
                     <FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>

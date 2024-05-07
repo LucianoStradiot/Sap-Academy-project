@@ -34,7 +34,7 @@
                         <Button id="_IDGenButton121" type="Ghost" icon="sap-icon://nav-back" press="onBack"/>
                         <Title id="_IDGenTitle3" text="Instrumentos" level="H2"/>
                         <ToolbarSpacer id="IDGenToolbarSpacer12"/>
-                        <OverflowToolbarButton id="idAddButton2" text="Add Luthier" type="Emphasized" icon="sap-icon://add" press="createInstrumentoLuthier"/>
+                        <OverflowToolbarButton id="idAddButton2" text="Add Luthier" type="Emphasized" icon="sap-icon://add" press="createInstrumento"/>
                     </Toolbar>
                 </headerToolbar>
                 <columns>

@@ -109,11 +109,6 @@
           "target": ["TargetMain"]
         },
         {
-          "name": "Home",
-          "pattern": "Home",
-          "target": ["TargetMain"]
-        },
-        {
           "name": "Luthiers",
           "pattern": "Luthiers",
           "target": ["TargetLuthiers"]

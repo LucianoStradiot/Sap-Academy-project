@@ -17,7 +17,7 @@
                 </ObjectHeader>
                 <IconTabHeader id="_IDGenIconTabBar1" select="handleNav" class="tabContainer">
                     <items>
-                        <IconTabFilter id="HomeI" key="Home" text="Home" />
+                        <IconTabFilter id="HomeI" key="RouteMain" text="Home" />
                         <IconTabFilter id="LuthiersTableI" key="Luthiers" text="Luthiers" />
                     </items>
                 </IconTabHeader >
