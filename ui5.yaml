@@ -18,10 +18,8 @@ server:
         backend:
           - path: /sap
             url: http://stks4hpil.eastus2.cloudapp.azure.com:8002
-            client: "170"
+            client: '170'
             destination: AEZ_ACADEMIA
-            user: LUUC3
-            password: Academia2022!
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

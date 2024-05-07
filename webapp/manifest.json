@@ -1,173 +1,193 @@
 {
-  "_version": "1.59.0",
-  "sap.app": {
-    "id": "aca20241q",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "applicationVersion": {
-      "version": "0.0.1"
-    },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "resources": "resources.json",
-    "sourceTemplate": {
-      "id": "@sap/generator-fiori:basic",
-      "version": "1.13.2",
-      "toolsId": "75b1240b-16b7-4f73-ae7e-4eb2515ec267"
-    },
-    "dataSources": {
-      "ZACA1Q2024_LUTHIERS_SRV_01": {
-        "uri": "/sap/opu/odata/sap/ZACA1Q2024_LUTHIERS_SRV_01",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "localUri": "localService/metadata.xml",
-          "odataVersion": "2.0"
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "aca20241q",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.13.2",
+            "toolsId": "75b1240b-16b7-4f73-ae7e-4eb2515ec267"
+        },
+        "dataSources": {
+            "ZACA1Q2024_LUTHIERS_SRV_03": {
+                "uri": "/sap/opu/odata/sap/ZACA1Q2024_LUTHIERS_SRV_03",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
         }
-      }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.123.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "aca20241q.i18n.i18n"
+                }
+            },
+            "": {
+                "preload": true,
+                "dataSource": "ZACA1Q2024_LUTHIERS_SRV_03",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/main.css"
+                },
+                {
+                    "uri": "css/header.css"
+                },
+                {
+                    "uri": "css/home.css"
+                },
+                {
+                    "uri": "css/addLuthier.css"
+                },
+                {
+                    "uri": "css/luthiersDetail.css"
+                }
+            ],
+            "resourceRootPaths": [
+                "images"
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "aca20241q.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteMain",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetMain"
+                    ]
+                },
+                {
+                    "name": "Luthiers",
+                    "pattern": "Luthiers",
+                    "target": [
+                        "TargetLuthiers"
+                    ]
+                },
+                {
+                    "name": "Instrumentos",
+                    "pattern": "Instrumentos",
+                    "target": [
+                        "TargetInstrumentos"
+                    ]
+                },
+                {
+                    "name": "LuthiersDetail",
+                    "pattern": "LuthiersDetail/{idLuthier}",
+                    "target": [
+                        "TargetLuthiersDetail"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetMain": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Main",
+                    "viewName": "Main",
+                    "viewLevel": 1
+                },
+                "TargetLuthiers": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "LuthierId",
+                    "viewName": "Luthiers",
+                    "viewLevel": 1
+                },
+                "TargetInstrumentos": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "InstrumentosId",
+                    "viewName": "Instrumentos",
+                    "viewLevel": 1
+                },
+                "TargetLuthiersDetail": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "LuthiersId",
+                    "viewName": "LuthiersDetail",
+                    "viewLevel": 1
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "aca20241q.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "aca20241q"
     }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "flexEnabled": true,
-    "dependencies": {
-      "minUI5Version": "1.123.1",
-      "libs": {
-        "sap.m": {},
-        "sap.ui.core": {},
-        "sap.f": {},
-        "sap.suite.ui.generic.template": {},
-        "sap.ui.comp": {},
-        "sap.ui.generic.app": {},
-        "sap.ui.table": {},
-        "sap.ushell": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "aca20241q.i18n.i18n"
-        }
-      },
-      "": {
-        "preload": true,
-        "dataSource": "ZACA1Q2024_LUTHIERS_SRV_01",
-        "settings": {
-          "defaultBindingMode": "TwoWay",
-          "defaultCountMode": "Inline",
-          "refreshAfterChange": false,
-          "metadataUrlParams": {
-            "sap-value-list": "none"
-          }
-        }
-      }
-    },
-    "resources": {
-      "css": [
-        { "uri": "css/main.css" },
-        { "uri": "css/header.css" },
-        { "uri": "css/home.css" },
-        { "uri": "css/addLuthier.css" },
-        { "uri": "css/luthiersDetail.css" }
-      ],
-      "resourceRootPaths": ["images"]
-    },
-    "routing": {
-      "config": {
-        "routerClass": "sap.m.routing.Router",
-        "viewType": "XML",
-        "async": true,
-        "viewPath": "aca20241q.view",
-        "controlAggregation": "pages",
-        "controlId": "app",
-        "clearControlAggregation": false
-      },
-      "routes": [
-        {
-          "name": "RouteMain",
-          "pattern": ":?query:",
-          "target": ["TargetMain"]
-        },
-        {
-          "name": "Luthiers",
-          "pattern": "Luthiers",
-          "target": ["TargetLuthiers"]
-        },
-        {
-          "name": "Instrumentos",
-          "pattern": "Instrumentos",
-          "target": ["TargetInstrumentos"]
-        },
-        {
-          "name": "LuthiersDetail",
-          "pattern": "LuthiersDetail/{idLuthier}",
-          "target": ["TargetLuthiersDetail"]
-        }
-      ],
-      "targets": {
-        "TargetMain": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "Main",
-          "viewName": "Main",
-          "viewLevel": 1
-        },
-        "TargetLuthiers": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "LuthierId",
-          "viewName": "Luthiers",
-          "viewLevel": 1
-        },
-        "TargetInstrumentos": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "InstrumentosId",
-          "viewName": "Instrumentos",
-          "viewLevel": 1
-        },
-        "TargetLuthiersDetail": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "LuthiersId",
-          "viewName": "LuthiersDetail",
-          "viewLevel": 1
-        }
-      }
-    },
-    "rootView": {
-      "viewName": "aca20241q.view.App",
-      "type": "XML",
-      "async": true,
-      "id": "App"
-    }
-  },
-  "sap.cloud": {
-    "public": true,
-    "service": "aca20241q"
-  }
 }
