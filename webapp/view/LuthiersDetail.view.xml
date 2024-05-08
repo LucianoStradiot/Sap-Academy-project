@@ -41,17 +41,19 @@
                     <Column id="_IDGenColumn1" width="12em">
                         <Text id="_IDGenText1" text="Instrumento" />
                     </Column>
-                    <Column id="_IDGenColumn2" minScreenWidth="Tablet" demandPopin="true">
+                    <Column id="_IDGenColumn2" width="12em">
                         <Text id="_IDGenText2" text="Tipo" />
                     </Column>
-                    <Column id="_IDGenColumn3" minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+                    <Column id="_IDGenColumn3" width="12em">
                         <Text id="_IDGenText3" text="Año de fabricación" />
                     </Column>
-                    <Column id="_IDGenColumn4" hAlign="End">
+                    <Column id="_IDGenColumn4" width="12em">
                         <Text id="_IDGenText4" text="Precio" />
                     </Column>
-                    <Column id="_IDGenColumn5" hAlign="End">
+                    <Column id="_IDGenColumn5" width="12em">
                         <Text id="_IDGenText5" text="Descripcion" />
+                    </Column>
+                    <Column id="_IDGenColumn6" width="12em">
                     </Column>
                 </columns>
                 <items>
@@ -60,8 +62,9 @@
                             <Text id="_IDGenObjectIdentifier1" text="{NombreInstrumento}"/>
                             <Text id="_IDGenText6" text="{TipoInstrumento}" />
                             <Text id="_IDGenText7" text="{AnioFabricacion}" />
-                            <Text id="_IDGenText8" text="{Precio}" />
+                            <Text id="_IDGenText8" text="USD {PrecioInstrumento}" />
                             <Text id="_IDGenText9" text="{Descripcion}" />
+                            <Button id="_IDGenButton4" type="Negative" icon="sap-icon://delete" press="deleteInstrumento"/>
                         </cells>
                     </ColumnListItem>
                 </items>

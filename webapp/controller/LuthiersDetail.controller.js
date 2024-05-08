@@ -57,7 +57,7 @@ sap.ui.define(
 
       createInstrumento: function (oEvent) {
         oEvent.getParameter("selected");
-        var precio = parseInt(oEvent.getParameter("selected"));
+        var precio = parseFloat(oEvent.getParameter("selected"));
         if (!this.oCreateFragment) {
           this.oCreateFragment = sap.ui.core.Fragment.load({
             name: "aca20241q.view.fragments.AddInstrumento",
@@ -70,7 +70,7 @@ sap.ui.define(
                 NombreInstrumento: "",
                 TipoInstrumento: "",
                 AnioFabricacion: "",
-                PrecioInstrumento: "",
+                PrecioInstrumento: precio,
                 Descripcion: "",
               });
               oBody.setDefaultBindingMode("TwoWay");
@@ -97,7 +97,9 @@ sap.ui.define(
       onCreateInstrumentoPress: function (oEvent) {
         let oEntry = oEvent.getSource().getModel("CreateInstrumento").getData();
         var oDataModel = that.getView().getModel();
-        console.log(oEntry);
+        oEntry.IdLuthier = this.getView()
+          .getBindingContext()
+          .getObject().IdLuthier;
         oDataModel.create("/InstrumentoSet", oEntry, {
           success: function (oResponse) {
             var result = oResponse?.results;
@@ -157,9 +159,7 @@ sap.ui.define(
 
       onUpdateLuthierPress: function (oEvent) {
         var oDialog = oEvent.getSource().getParent();
-        console.log(oDialog);
         var oLuthierModel = oDialog.getModel("UpdateLuthier");
-        console.log(oLuthierModel);
         debugger;
         if (oLuthierModel) {
           var oLuthier = oLuthierModel.getData();
@@ -186,24 +186,23 @@ sap.ui.define(
         oDialog.close();
       },
 
-      deleteLuthier: function (oEvent) {
-        var sPath = oEvent
-          .getParameter("listItem")
-          .getBindingContext()
-          .getPath();
-
+      deleteInstrumento: function (oEvent) {
+        var sPath = oEvent.getSource().getBindingContext().getPath();
+        var oDataModel = oEvent.getSource().getModel();
+        var sInstrumentoNombre = oDataModel.getProperty(
+          sPath + "/NombreInstrumento"
+        );
         sap.m.MessageBox.confirm(
-          "¿Estás seguro de que quieres eliminar el Luthier?",
+          `¿Estás seguro que querés eliminar ${sInstrumentoNombre}?`,
           {
             title: "Confirmación",
             onClose: function (oAction) {
               if (oAction === sap.m.MessageBox.Action.OK) {
-                var oDataModel = oEvent.getSource().getModel();
                 if (oDataModel) {
                   oDataModel.remove(`${sPath}`, {
                     success: function (oResponse) {
                       sap.m.MessageBox.success(
-                        "Se eliminó correctamente el Luthier"
+                        `${sInstrumentoNombre} se eliminó correctamente `
                       );
                       oDataModel.refresh(true, true);
                     },

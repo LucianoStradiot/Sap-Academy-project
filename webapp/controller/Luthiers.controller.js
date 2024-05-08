@@ -31,20 +31,12 @@ sap.ui.define(
       onModeChange: function (oEvent) {
         var oButton = this.byId("idDeleteButton2");
         var gridList = this.getView().byId("gridList");
-
-        // Verifica el modo actual del GridList
         var currentMode = gridList.getMode();
-
-        // Cambia al otro modo
         var newMode =
           currentMode === "SingleSelectMaster"
             ? "Delete"
             : "SingleSelectMaster";
-
-        // Establece el nuevo modo
         gridList.setMode(newMode);
-
-        // Si se cambió al modo "Delete", desvincula la función deleteLuthier del evento de selección
         if (newMode === "Delete") {
           gridList.detachSelectionChange(this.deleteLuthier);
         }
@@ -148,12 +140,9 @@ sap.ui.define(
       },
 
       onUpdateLuthierPress: function (oEvent) {
-        var oDialog = oEvent.getSource().getParent();
-        console.log(oDialog);
-        var oLuthierModel = oDialog.getModel("UpdateLuthier");
-        console.log(oLuthierModel);
-        debugger;
-        if (oLuthierModel) {
+        let oEntry = oEvent.getSource().getModel("UpdateLuthier").getData();
+        var oDataModel = that.getView().getModel();
+        if (oDataModel) {
           var oLuthier = oLuthierModel.getData();
           var oContext = oEvent.getSource().getBindingContext();
 
@@ -174,8 +163,11 @@ sap.ui.define(
       },
 
       onCloseUpdateLuthierPress: function () {
-        var oDialog = oEvent.getSource().getParent();
-        oDialog.close();
+        if (this.oUpdateFragment) {
+          this.oUpdateFragment.close();
+        } else {
+          console.error("Update fragment not found.");
+        }
       },
 
       deleteLuthier: function (oEvent) {
@@ -183,40 +175,51 @@ sap.ui.define(
           .getParameter("listItem")
           .getBindingContext()
           .getPath();
+        var oDataModel = oEvent.getSource().getModel();
+        var oLuthier = oDataModel.getProperty(sPath);
+        var sNombre = oLuthier.Nombre;
+        var sApellido = oLuthier.Apellido;
+        if (sNombre && sApellido) {
+          var sAdminNombre = sNombre + " " + sApellido;
 
-        sap.m.MessageBox.confirm(
-          "¿Estás seguro de que quieres eliminar el Luthier?",
-          {
-            title: "Confirmación",
-            onClose: function (oAction) {
-              if (oAction === sap.m.MessageBox.Action.OK) {
-                var oDataModel = oEvent.getSource().getModel();
-                if (oDataModel) {
-                  oDataModel.remove(`${sPath}`, {
-                    success: function (oResponse) {
-                      sap.m.MessageBox.success(
-                        "Se eliminó correctamente el Luthier"
-                      );
-                      oDataModel.refresh(true, true);
-                    },
-                    error: function (oError) {
-                      sap.m.MessageBox.error("Error al eliminar el luthier");
-                    },
-                  });
-                } else {
-                  sap.m.MessageBox.error(
-                    "No se pudo obtener el modelo de datos"
-                  );
+          sap.m.MessageBox.confirm(
+            `¿Estás seguro que querés eliminar a ${sAdminNombre}?`,
+            {
+              title: "Confirmación",
+              onClose: function (oAction) {
+                if (oAction === sap.m.MessageBox.Action.OK) {
+                  if (oDataModel) {
+                    oDataModel.remove(`${sPath}`, {
+                      success: function (oResponse) {
+                        sap.m.MessageBox.success(
+                          `${sAdminNombre} se eliminó correctamente`
+                        );
+                        oDataModel.refresh(true, true);
+                      },
+                      error: function (oError) {
+                        sap.m.MessageBox.error(
+                          `Error al eliminar a ${sAdminNombre}`
+                        );
+                      },
+                    });
+                  } else {
+                    sap.m.MessageBox.error(
+                      "No se pudo obtener el modelo de datos"
+                    );
+                  }
                 }
-              }
-            },
-          }
-        );
+              },
+            }
+          );
+        } else {
+          sap.m.MessageBox.error(
+            "No se pudo obtener el nombre y apellido del luthier"
+          );
+        }
       },
 
       onPressNavigation: function (oEvent) {
         var oListItem = oEvent.getParameter("listItem");
-        console.log(oListItem.getBindingContext());
         var sLuthier = oListItem.getBindingContext().getProperty("IdLuthier");
         var router = that.getOwnerComponent().getRouter();
         router.navTo("LuthiersDetail", {

@@ -5,8 +5,6 @@
         <content>
             <form:SimpleForm id="SimpleFormDisplay480" editable="false" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
                 <form:content >
-                    <Label id="_IDGenLabel2w" text="Id de Luthier" class="labelForm"/>
-                    <Input id="IdInput" type="Number" value="{CreateInstrumento>/IdLuthier}" valueLiveUpdate="true"/>
                     <Label id="_IDGenLabel2" text="Nombre de Instrumento" class="labelForm"/>
                     <Input id="nombreInput" value="{CreateInstrumento>/NombreInstrumento}" valueLiveUpdate="true"/>
                     <Label id="_IDGenLabel3" text="Tipo de Instrumento" class="labelForm"/>
