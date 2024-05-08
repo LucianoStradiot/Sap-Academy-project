@@ -14,7 +14,7 @@
                     <Label id="_IDGenLabel5" required="true" text="Tipo de Instrumento" class="labelForm"/>
                     <Input id="tipoInstrumentoInput" value="{CreateLuthier>/TipoInstrumento}" valueLiveUpdate="true" placeholder="Tipo: Cuerdas"/>
                     <Label id="_IDGenLabel6" required="true" text="Descripción" class="labelForm"/>
-                    <TextArea id="descripcionInput" value="{CreateLuthier>/Descripcion}" valueLiveUpdate="true" maxLength="40" placeholder="Descripción: Luthier con 10 años de experiencia en el rubro."/>
+                    <TextArea id="descripcionInput" value="{CreateLuthier>/Descripcion}" valueLiveUpdate="true" maxLength="200" placeholder="Descripción: Luthier con 10 años de experiencia en el rubro."/>
                 </form:content>
                 <form:layoutData>
                     <FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>

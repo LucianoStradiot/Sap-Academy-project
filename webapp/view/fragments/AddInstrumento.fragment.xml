@@ -14,7 +14,7 @@
                     <Label id="_IDGenLabel5" required="true" text="Precio" class="labelForm"/>
                     <Input id="tipoInstrumentoInput" type="Number" value="{CreateInstrumento>/PrecioInstrumento}" valueLiveUpdate="true" placeholder="Precio: USD 1000"/>
                     <Label id="_IDGenLabel6" required="true" text="Descripción" class="labelForm"/>
-                    <TextArea id="descripcionInput" value="{CreateInstrumento>/Descripcion}" valueLiveUpdate="true" maxLength="50" placeholder="Descripción: Cuerpo construído en cedro y mástil en palo de rosa"/>
+                    <TextArea id="descripcionInput" value="{CreateInstrumento>/Descripcion}" valueLiveUpdate="true" maxLength="200" placeholder="Descripción: Cuerpo construído en cedro y mástil en palo de rosa"/>
                 </form:content>
                 <form:layoutData>
                     <FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>

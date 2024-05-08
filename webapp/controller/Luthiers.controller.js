@@ -86,14 +86,17 @@ sap.ui.define(
         oDataModel.create("/LuthiersSet", oEntry, {
           success: function (oResponse) {
             var result = oResponse?.results;
-            sap.m.MessageBox.success("Luthier creado", {
-              title: "Éxito!",
-            });
+            sap.m.MessageBox.success(
+              `${oEntry.Nombre} ${oEntry.Apellido} creado correctamente.`,
+              {
+                title: "Éxito!",
+              }
+            );
             that.getOwnerComponent().getModel().refresh(true, true);
             that.onCloseLuthierPress();
           },
           error: function () {
-            sap.m.MessageBox.error("Error al intentar crear un nuevo luthier");
+            sap.m.MessageBox.error("Los campos no pueden estar vacíos.");
           },
         });
       },
@@ -149,14 +152,19 @@ sap.ui.define(
 
         oDataModel.update(`/LuthiersSet('${sIdLuthier}')`, oDialog, {
           success: function (oResponse) {
-            sap.m.MessageBox.success("Luthier actualizado correctamente", {
-              title: "Éxito!",
-            });
+            sap.m.MessageBox.success(
+              `${oDialog.Nombre} ${oDialog.Apellido} actualizado correctamente.`,
+              {
+                title: "Éxito!",
+              }
+            );
             that.getOwnerComponent().getModel().refresh(true, true);
             that.onCloseUpdateLuthierPress();
           },
           error: function (oError) {
-            sap.m.MessageBox.error("Error al actualizar el luthier");
+            sap.m.MessageBox.error(
+              `Error al actualizar ${oDialog.Nombre} ${oDialog.Apellido}`
+            );
           },
         });
       },

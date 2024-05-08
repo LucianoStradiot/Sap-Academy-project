@@ -102,16 +102,29 @@ sap.ui.define(
         oDataModel.create("/InstrumentoSet", oEntry, {
           success: function (oResponse) {
             var result = oResponse?.results;
-            sap.m.MessageBox.success("Instrumento creado", {
-              title: "Éxito!",
-            });
+            sap.m.MessageBox.success(
+              `${oEntry.NombreInstrumento} ha sido creado correctamente.`,
+              {
+                title: "Éxito!",
+              }
+            );
             that.getOwnerComponent().getModel().refresh(true, true);
             that.onCloseInstrumentoPress();
           },
-          error: function () {
-            sap.m.MessageBox.error(
-              "Error al intentar crear un nuevo instrumento"
-            );
+          error: function (oError) {
+            var oMessageManager = sap.ui.getCore().getMessageManager();
+            var oMessageParser = new sap.ui.model.odata.ODataMessageParser();
+            var aMessages = oMessageParser.parse(oError.response);
+
+            if (aMessages && aMessages.length > 0) {
+              for (var i = 0; i < aMessages.length; i++) {
+                oMessageManager.addMessages(aMessages[i]);
+              }
+            } else {
+              sap.m.MessageBox.error(
+                `Error al intentar crear ${oEntry.NombreInstrumento}.`
+              );
+            }
           },
         });
       },
@@ -172,7 +185,7 @@ sap.ui.define(
           {
             success: function (oResponse) {
               sap.m.MessageBox.success(
-                "Instrumento actualizado correctamente",
+                `${oEntry.NombreInstrumento} actualizado correctamente.`,
                 {
                   title: "Éxito!",
                 }
@@ -181,7 +194,9 @@ sap.ui.define(
               that.onCloseUpdateInstrumentoPress();
             },
             error: function (oError) {
-              sap.m.MessageBox.error("Error al actualizar el instrumento");
+              sap.m.MessageBox.error(
+                `Error al actualizar ${oEntry.NombreInstrumento}.`
+              );
             },
           }
         );
