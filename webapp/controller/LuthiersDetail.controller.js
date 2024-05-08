@@ -66,7 +66,6 @@ sap.ui.define(
             function (oDialog) {
               that.getView().addDependent(oDialog);
               let oBody = new sap.ui.model.json.JSONModel({
-                IdLuthier: "",
                 NombreInstrumento: "",
                 TipoInstrumento: "",
                 AnioFabricacion: "",
@@ -103,7 +102,9 @@ sap.ui.define(
         oDataModel.create("/InstrumentoSet", oEntry, {
           success: function (oResponse) {
             var result = oResponse?.results;
-            sap.m.MessageBox.success("Instrumento creado");
+            sap.m.MessageBox.success("Instrumento creado", {
+              title: "Éxito!",
+            });
             that.getOwnerComponent().getModel().refresh(true, true);
             that.onCloseInstrumentoPress();
           },
@@ -118,72 +119,80 @@ sap.ui.define(
       onCloseInstrumentoPress: function (oEvent) {
         this.oCreateFragment.then(
           function (oDialog) {
-            console.log(oDialog);
             oDialog.close();
           }.bind(that)
         );
       },
 
-      updateLuthier: function (oEvent) {
+      updateInstrumento: function (oEvent) {
         var oContext = oEvent.getSource().getBindingContext();
-        var oLuthier = oContext.getObject();
+        var oInstrumento = oContext.getObject();
 
         if (!this.oUpdateFragment) {
-          this.oUpdateFragment = sap.ui.xmlfragment(
-            "aca20241q.view.fragments.UpdateLuthier",
-            this
+          this.oUpdateFragment = sap.ui.core.Fragment.load({
+            name: "aca20241q.view.fragments.UpdateInstrumento",
+            controller: that,
+          }).then(
+            function (oDialog) {
+              that.getView().addDependent(oDialog);
+              var oUpdateModel = new sap.ui.model.json.JSONModel(oInstrumento);
+              oDialog.setModel(oUpdateModel, "UpdateInstrumento");
+              oDialog.attachAfterClose(that._afterCloseUpdateDialog);
+              return oDialog;
+            }.bind(that)
           );
-          this.getView().addDependent(this.oUpdateFragment);
         }
-
-        this.oUpdateFragment.setModel(
-          new sap.ui.model.json.JSONModel(oLuthier),
-          "UpdateLuthier"
-        );
-        this.oUpdateFragment.open();
+        if (this.oUpdateFragment) {
+          this.oUpdateFragment.then(
+            function (oDialog) {
+              oDialog.open();
+            }.bind(that)
+          );
+        }
       },
 
       _afterCloseUpdateDialog: function (oEvent) {
-        this.oUpdateFragment
-          .then(function (oDialog) {
-            oDialog.destroy();
-          })
-          .catch(function (error) {
-            console.error(
-              "Error al destruir el diálogo de actualización:",
-              error
-            );
-          });
-        this.oUpdateFragment = null;
+        oEvent.getSource().destroy();
+        that.oUpdateFragment = null;
       },
 
-      onUpdateLuthierPress: function (oEvent) {
-        var oDialog = oEvent.getSource().getParent();
-        var oLuthierModel = oDialog.getModel("UpdateLuthier");
-        debugger;
-        if (oLuthierModel) {
-          var oLuthier = oLuthierModel.getData();
-          var oContext = oEvent.getSource().getBindingContext();
+      onUpdateInstrumentoPress: function (oEvent) {
+        var oEntry = oEvent
+          .getSource()
+          .getParent()
+          .getModel("UpdateInstrumento")
+          .getData();
+        var sIdInstrumento = oEntry.IdInstrumento;
+        var sIdLuthier = oEntry.IdLuthier;
+        var oDataModel = that.getView().getModel();
 
-          var oDataModel = this.getView().getModel();
-          oDataModel.update(`${oContext.getPath()}`, oLuthier, {
+        oDataModel.update(
+          `/InstrumentoSet(IdInstrumento='${sIdInstrumento}',IdLuthier='${sIdLuthier}')`,
+          oEntry,
+          {
             success: function (oResponse) {
-              sap.m.MessageBox.success("Luthier actualizado correctamente");
-              oDataModel.refresh(true, true);
-              oDialog.close();
+              sap.m.MessageBox.success(
+                "Instrumento actualizado correctamente",
+                {
+                  title: "Éxito!",
+                }
+              );
+              that.getOwnerComponent().getModel().refresh(true, true);
+              that.onCloseUpdateInstrumentoPress();
             },
             error: function (oError) {
-              sap.m.MessageBox.error("Error al actualizar el luthier");
+              sap.m.MessageBox.error("Error al actualizar el instrumento");
             },
-          });
-        } else {
-          sap.m.MessageBox.error("No se pudo obtener el modelo del luthier");
-        }
+          }
+        );
       },
 
-      onCloseUpdateLuthierPress: function () {
-        var oDialog = oEvent.getSource().getParent();
-        oDialog.close();
+      onCloseUpdateInstrumentoPress: function () {
+        this.oUpdateFragment.then(
+          function (oDialog) {
+            oDialog.close();
+          }.bind(that)
+        );
       },
 
       deleteInstrumento: function (oEvent) {
@@ -195,14 +204,18 @@ sap.ui.define(
         sap.m.MessageBox.confirm(
           `¿Estás seguro que querés eliminar ${sInstrumentoNombre}?`,
           {
-            title: "Confirmación",
+            title: "Advertencia!",
+            icon: sap.m.MessageBox.Icon.WARNING,
             onClose: function (oAction) {
               if (oAction === sap.m.MessageBox.Action.OK) {
                 if (oDataModel) {
                   oDataModel.remove(`${sPath}`, {
                     success: function (oResponse) {
                       sap.m.MessageBox.success(
-                        `${sInstrumentoNombre} se eliminó correctamente `
+                        `${sInstrumentoNombre} se eliminó correctamente `,
+                        {
+                          title: "Éxito!",
+                        }
                       );
                       oDataModel.refresh(true, true);
                     },
@@ -219,6 +232,16 @@ sap.ui.define(
             },
           }
         );
+      },
+
+      onLiveChange: function (oEvent) {
+        var oInput = oEvent.getSource();
+        var sValue = oInput.getValue();
+        var iMaxDigits = 4;
+        if (sValue && sValue.toString().length > iMaxDigits) {
+          var sTruncatedValue = sValue.toString().slice(0, iMaxDigits);
+          oInput.setValue(sTruncatedValue);
+        }
       },
     });
   }

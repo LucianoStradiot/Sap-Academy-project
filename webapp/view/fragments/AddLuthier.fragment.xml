@@ -5,15 +5,15 @@
         <content>
             <form:SimpleForm id="SimpleFormDisplay480" editable="false" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
                 <form:content >
-                    <Label id="_IDGenLabel2" text="Nombre" class="labelForm"/>
+                    <Label id="_IDGenLabel2" required="true" text="Nombre" class="labelForm"/>
                     <Input id="nombreInput" value="{CreateLuthier>/Nombre}" valueLiveUpdate="true" placeholder="Nombre: Lautaro"/>
-                    <Label id="_IDGenLabel3" text="Apellido" class="labelForm"/>
+                    <Label id="_IDGenLabel3" required="true" text="Apellido" class="labelForm"/>
                     <Input id="apellidoInput" value="{CreateLuthier>/Apellido}" valueLiveUpdate="true" placeholder="Apellido: Fernández"/>
-                    <Label id="_IDGenLabel4" text="Localidad" class="labelForm"/>
+                    <Label id="_IDGenLabel4" required="true" text="Localidad" class="labelForm"/>
                     <Input id="localidadInput" value="{CreateLuthier>/Localidad}" valueLiveUpdate="true" placeholder="Localidad: Rosario"/>
-                    <Label id="_IDGenLabel5" text="Tipo de Instrumento" class="labelForm"/>
+                    <Label id="_IDGenLabel5" required="true" text="Tipo de Instrumento" class="labelForm"/>
                     <Input id="tipoInstrumentoInput" value="{CreateLuthier>/TipoInstrumento}" valueLiveUpdate="true" placeholder="Tipo: Cuerdas"/>
-                    <Label id="_IDGenLabel6" text="Descripción" class="labelForm"/>
+                    <Label id="_IDGenLabel6" required="true" text="Descripción" class="labelForm"/>
                     <TextArea id="descripcionInput" value="{CreateLuthier>/Descripcion}" valueLiveUpdate="true" maxLength="40" placeholder="Descripción: Luthier con 10 años de experiencia en el rubro."/>
                 </form:content>
                 <form:layoutData>

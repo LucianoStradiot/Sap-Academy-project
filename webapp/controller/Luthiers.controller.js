@@ -69,7 +69,6 @@ sap.ui.define(
         if (this.oCreateFragment) {
           this.oCreateFragment.then(
             function (oDialog) {
-              console.log(oDialog);
               oDialog.open();
             }.bind(that)
           );
@@ -87,7 +86,9 @@ sap.ui.define(
         oDataModel.create("/LuthiersSet", oEntry, {
           success: function (oResponse) {
             var result = oResponse?.results;
-            sap.m.MessageBox.success("Luthier creado");
+            sap.m.MessageBox.success("Luthier creado", {
+              title: "Éxito!",
+            });
             that.getOwnerComponent().getModel().refresh(true, true);
             that.onCloseLuthierPress();
           },
@@ -100,7 +101,6 @@ sap.ui.define(
       onCloseLuthierPress: function (oEvent) {
         this.oCreateFragment.then(
           function (oDialog) {
-            console.log(oDialog);
             oDialog.close();
           }.bind(that)
         );
@@ -111,63 +111,62 @@ sap.ui.define(
         var oLuthier = oContext.getObject();
 
         if (!this.oUpdateFragment) {
-          this.oUpdateFragment = sap.ui.xmlfragment(
-            "aca20241q.view.fragments.UpdateLuthier",
-            this
+          this.oUpdateFragment = sap.ui.core.Fragment.load({
+            name: "aca20241q.view.fragments.UpdateLuthier",
+            controller: that,
+          }).then(
+            function (oDialog) {
+              that.getView().addDependent(oDialog);
+              var oUpdateModel = new sap.ui.model.json.JSONModel(oLuthier);
+              oDialog.setModel(oUpdateModel, "UpdateLuthier");
+              oDialog.attachAfterClose(that._afterCloseUpdateDialog);
+              return oDialog;
+            }.bind(that)
           );
-          this.getView().addDependent(this.oUpdateFragment);
         }
-
-        this.oUpdateFragment.setModel(
-          new sap.ui.model.json.JSONModel(oLuthier),
-          "UpdateLuthier"
-        );
-        this.oUpdateFragment.open();
+        if (this.oUpdateFragment) {
+          this.oUpdateFragment.then(
+            function (oDialog) {
+              oDialog.open();
+            }.bind(that)
+          );
+        }
       },
 
       _afterCloseUpdateDialog: function (oEvent) {
-        this.oUpdateFragment
-          .then(function (oDialog) {
-            oDialog.destroy();
-          })
-          .catch(function (error) {
-            console.error(
-              "Error al destruir el diálogo de actualización:",
-              error
-            );
-          });
-        this.oUpdateFragment = null;
+        oEvent.getSource().destroy();
+        that.oUpdateFragment = null;
       },
 
       onUpdateLuthierPress: function (oEvent) {
-        let oEntry = oEvent.getSource().getModel("UpdateLuthier").getData();
-        var oDataModel = that.getView().getModel();
-        if (oDataModel) {
-          var oLuthier = oLuthierModel.getData();
-          var oContext = oEvent.getSource().getBindingContext();
+        var oDialog = oEvent
+          .getSource()
+          .getParent()
+          .getModel("UpdateLuthier")
+          .getData();
+        var sIdLuthier = oDialog.IdLuthier;
+        var oDataModel = this.getView().getModel();
 
-          var oDataModel = this.getView().getModel();
-          oDataModel.update(`${oContext.getPath()}`, oLuthier, {
-            success: function (oResponse) {
-              sap.m.MessageBox.success("Luthier actualizado correctamente");
-              oDataModel.refresh(true, true);
-              oDialog.close();
-            },
-            error: function (oError) {
-              sap.m.MessageBox.error("Error al actualizar el luthier");
-            },
-          });
-        } else {
-          sap.m.MessageBox.error("No se pudo obtener el modelo del luthier");
-        }
+        oDataModel.update(`/LuthiersSet('${sIdLuthier}')`, oDialog, {
+          success: function (oResponse) {
+            sap.m.MessageBox.success("Luthier actualizado correctamente", {
+              title: "Éxito!",
+            });
+            that.getOwnerComponent().getModel().refresh(true, true);
+            that.onCloseUpdateLuthierPress();
+          },
+          error: function (oError) {
+            sap.m.MessageBox.error("Error al actualizar el luthier");
+          },
+        });
       },
 
       onCloseUpdateLuthierPress: function () {
-        if (this.oUpdateFragment) {
-          this.oUpdateFragment.close();
-        } else {
-          console.error("Update fragment not found.");
-        }
+        this.oUpdateFragment.then(
+          function (oDialog) {
+            oDialog.close();
+          }.bind(that)
+        );
       },
 
       deleteLuthier: function (oEvent) {
@@ -185,14 +184,18 @@ sap.ui.define(
           sap.m.MessageBox.confirm(
             `¿Estás seguro que querés eliminar a ${sAdminNombre}?`,
             {
-              title: "Confirmación",
+              title: "Advertencia!",
+              icon: sap.m.MessageBox.Icon.WARNING,
               onClose: function (oAction) {
                 if (oAction === sap.m.MessageBox.Action.OK) {
                   if (oDataModel) {
                     oDataModel.remove(`${sPath}`, {
                       success: function (oResponse) {
                         sap.m.MessageBox.success(
-                          `${sAdminNombre} se eliminó correctamente`
+                          `${sAdminNombre} se eliminó correctamente`,
+                          {
+                            title: "Éxito!",
+                          }
                         );
                         oDataModel.refresh(true, true);
                       },
