@@ -24,3 +24,11 @@
 .deleteBtn {
   margin-right: 10px;
 }
+
+.filter{
+  border-radius: 10px;
+}
+
+.sapMIBar.sapMTB .sapMBarChild.sapMBarChildFirstChild {
+  margin-left: 19px;
+}

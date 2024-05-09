@@ -258,6 +258,66 @@ sap.ui.define(
           oInput.setValue(sTruncatedValue);
         }
       },
+
+      onSearch: function (oEvent) {
+        var aFilters = [],
+          sNombreInstrumento,
+          sTipoInstrumento,
+          sAnioFabricacion,
+          sPrecioInstrumento;
+        var aSelectionSet = oEvent.getParameter("selectionSet");
+        aSelectionSet.forEach((x) => {
+          switch (x.getName()) {
+            case "NombreInstrumento":
+              sNombreInstrumento = x.getValue();
+              break;
+            case "TipoInstrumento":
+              sTipoInstrumento = x.getValue();
+              break;
+            case "AnioFabricacion":
+              sAnioFabricacion = x.getValue();
+              break;
+              case "PrecioInstrumento":
+                sPrecioInstrumento = x.getValue();
+              break;
+            default:
+          }
+        });
+        if (sNombreInstrumento) {
+          let oFilterNombreInstrumento = new sap.ui.model.Filter({
+            path: "NombreInstrumento",
+            operator: "EQ",
+            value1: sNombreInstrumento,
+          });
+          aFilters.push(oFilterNombreInstrumento);
+        }
+        if (sTipoInstrumento) {
+          let oFilterTipoInstrumento = new sap.ui.model.Filter({
+            path: "TipoInstrumento",
+            operator: "EQ",
+            value1: sTipoInstrumento,
+          });
+          aFilters.push(oFilterTipoInstrumento);
+        }
+        if (sAnioFabricacion) {
+          let oFilterAnioFabricacion = new sap.ui.model.Filter({
+            path: "AnioFabricacion",
+            operator: "EQ",
+            value1: sAnioFabricacion,
+          });
+          aFilters.push(oFilterAnioFabricacion);
+        }
+        if (sPrecioInstrumento) {
+          let oFilterPrecioInstrumento = new sap.ui.model.Filter({
+            path: "PrecioInstrumento",
+            operator: "EQ",
+            value1: sPrecioInstrumento,
+          });
+          aFilters.push(oFilterPrecioInstrumento);
+        }
+
+        this.getView().byId("idInstrumentosTable").getBinding("items").filter(aFilters);
+      },
     });
   }
 );

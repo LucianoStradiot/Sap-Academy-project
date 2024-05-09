@@ -2,19 +2,32 @@ sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
+    "./BaseController",
+    "sap/ui/core/routing/History",
     "sap/ui/core/mvc/XMLView",
   ],
-  function (Controller, MessageToast) {
+  function (BaseController, History) {
     "use strict";
     var that;
 
-    return Controller.extend("aca20241q.controller.Luthiers", {
+    return BaseController.extend("aca20241q.controller.Luthiers", {
       onInit: function () {
         that = this;
+
         var gridList = this.getView().byId("gridList");
         var mode = gridList.getMode();
         if (mode === "SingleSelectMaster") {
           gridList.attachSelectionChange(this.onPressNavigation);
+        }
+      },
+
+      onBack: function (oEvent) {
+        var oHistory = sap.ui.core.routing.History.getInstance();
+        var sPreviousHash = oHistory.getPreviousHash();
+        if (sPreviousHash !== undefined) {
+            window.history.go(-1);
+        } else {
+            this.getOwnerComponent().getRouter().navTo("RouteMain", {}, true /*no history*/);
         }
       },
 

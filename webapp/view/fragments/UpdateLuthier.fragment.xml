@@ -14,7 +14,7 @@
                     <Label id="_IDGenLabel52" text="Tipo de Instrumento" class="labelForm"/>
                     <Input id="tipoInstrumentoInpu2t" value="{UpdateLuthier>/TipoInstrumento}" valueLiveUpdate="true"/>
                     <Label id="_IDGenLabel62" text="Descripción" class="labelForm"/>
-                    <TextArea id="descripcionInput2" value="{UpdateLuthier>/Descripcion}" valueLiveUpdate="true" maxLength="40"/>
+                    <TextArea id="descripcionInput2" value="{UpdateLuthier>/Descripcion}" valueLiveUpdate="true" maxLength="200"/>
                 </form:content>
                 <form:layoutData>
                     <FlexItemData id="_IDGenFlexItemData12" shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>

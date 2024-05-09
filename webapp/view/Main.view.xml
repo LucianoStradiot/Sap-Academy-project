@@ -12,12 +12,9 @@
                     <ObjectAttribute id="_IDGenObjectAttribute1" text="Bienvenidos!" />
                     <ObjectAttribute id="_IDGenObjectAttribute2" text="Aquí encontrarás todo tipo de instrumentos musicales de diferentes gamas y géneros." />
                 </ObjectHeader>
-                <IconTabHeader id="_IDGenIconTabBar1" select="handleNav" class="IconTabHeader">
-                    <items>
-                        <IconTabFilter id="HomeI" key="RouteMain" text="Home" class="IconTabHeader"/>
-                        <IconTabFilter id="LuthiersTableI" key="Luthiers" text="Luthiers" class="IconTabHeader"/>
-                    </items>
-                </IconTabHeader >
+                <Toolbar id="_IDGenToolbar2" height="50px">
+                    <Button id="_IDGenButton121" type="Ghost" text="Luthiers" press="onForward" class="sapUiTinyMarginTopBottom"/>
+                </Toolbar>
             </VBox>
         </FlexBox>
         <FlexBox id="_IDGenFlexBox1">

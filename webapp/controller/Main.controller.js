@@ -9,6 +9,16 @@ sap.ui.define(
         that = this;
       },
 
+      onForward: function (oEvent) {
+        var oHistory = sap.ui.core.routing.History.getInstance();
+        var sPreviousHash = oHistory.getPreviousHash();
+        if (sPreviousHash !== undefined) {
+            window.history.go(-1);
+        } else {
+            this.getOwnerComponent().getRouter().navTo("Luthiers", {}, true /*no history*/);
+        }
+      },
+
       handleNav: function (oEvent) {
         var oRouter = this.getOwnerComponent().getRouter();
         var sKey = oEvent.getParameter("key");
