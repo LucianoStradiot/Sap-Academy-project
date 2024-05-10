@@ -8,13 +8,16 @@
                     <Label id="_IDGenLabel2" text="Nombre del Instrumento" class="labelForm"/>
                     <Input id="nombreInput" value="{UpdateInstrumento>/NombreInstrumento}" valueLiveUpdate="true"/>
                     <Label id="_IDGenLabel3" text="Tipo del Instrumento" class="labelForm"/>
-                    <Input id="apellidoInput" value="{UpdateInstrumento>/TipoInstrumento}" valueLiveUpdate="true"/>
+                    <Select id="tipoInstrumentoSelect" selectedKey="{UpdateInstrumento>/TipoInstrumento}">
+                        <core:Item id="_IDGenItem1" key="Clásico" text="Clásico"/>
+                        <core:Item id="_IDGenItem2" key="Moderno" text="Moderno"/>
+                    </Select>
                     <Label id="_IDGenLabel4" text="Año de Fabricación" class="labelForm"/>
                     <Input id="localidadInput" value="{UpdateInstrumento>/AnioFabricacion}" valueLiveUpdate="true"/>
                     <Label id="_IDGenLabel5" text="Precio del Instrumento" class="labelForm"/>
                     <Input id="tipoInstrumentoInput" value="{UpdateInstrumento>/PrecioInstrumento}" valueLiveUpdate="true"/>
                     <Label id="_IDGenLabel6" text="Descripción" class="labelForm"/>
-                    <TextArea id="descripcionInput" value="{UpdateInstrumento>/Descripcion}" valueLiveUpdate="true" maxLength="40"/>
+                    <TextArea id="descripcionInput" value="{UpdateInstrumento>/Descripcion}" valueLiveUpdate="true" maxLength="200"/>
                 </form:content>
                 <form:layoutData>
                     <FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>

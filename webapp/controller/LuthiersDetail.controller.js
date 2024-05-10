@@ -112,19 +112,7 @@ sap.ui.define(
             that.onCloseInstrumentoPress();
           },
           error: function (oError) {
-            var oMessageManager = sap.ui.getCore().getMessageManager();
-            var oMessageParser = new sap.ui.model.odata.ODataMessageParser();
-            var aMessages = oMessageParser.parse(oError.response);
-
-            if (aMessages && aMessages.length > 0) {
-              for (var i = 0; i < aMessages.length; i++) {
-                oMessageManager.addMessages(aMessages[i]);
-              }
-            } else {
-              sap.m.MessageBox.error(
-                `Error al intentar crear ${oEntry.NombreInstrumento}.`
-              );
-            }
+            sap.m.MessageBox.error(`Los campos no pueden estar vacíos.`);
           },
         });
       },
@@ -277,8 +265,8 @@ sap.ui.define(
             case "AnioFabricacion":
               sAnioFabricacion = x.getValue();
               break;
-              case "PrecioInstrumento":
-                sPrecioInstrumento = x.getValue();
+            case "PrecioInstrumento":
+              sPrecioInstrumento = x.getValue();
               break;
             default:
           }
@@ -316,7 +304,10 @@ sap.ui.define(
           aFilters.push(oFilterPrecioInstrumento);
         }
 
-        this.getView().byId("idInstrumentosTable").getBinding("items").filter(aFilters);
+        this.getView()
+          .byId("idInstrumentosTable")
+          .getBinding("items")
+          .filter(aFilters);
       },
     });
   }

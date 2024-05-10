@@ -8,7 +8,11 @@
                     <Label id="_IDGenLabel2" required="true" text="Nombre de Instrumento" class="labelForm" />
                     <Input id="nombreInput" value="{CreateInstrumento>/NombreInstrumento}" valueLiveUpdate="true" placeholder="Nombre: Guitarra"/>
                     <Label id="_IDGenLabel3" required="true" text="Tipo de Instrumento" class="labelForm"/>
-                    <Input id="apellidoInput" value="{CreateInstrumento>/TipoInstrumento}" valueLiveUpdate="true" placeholder="Tipo: Clásico"/>
+                    <Select id="tipoInstrumentoSelect" selectedKey="{CreateInstrumento>/TipoInstrumento}">
+                        <core:Item id="_IDGenItem3" key="" text="Elija el tipo"/>
+                        <core:Item id="_IDGenItem1" key="Clásico" text="Clásico"/>
+                        <core:Item id="_IDGenItem2" key="Moderno" text="Moderno"/>
+                    </Select>
                     <Label id="_IDGenLabel4" required="true" text="Año de Fabricacion" class="labelForm"/>
                     <Input id="localidadInput" type="Number" value="{CreateInstrumento>/AnioFabricacion}" valueLiveUpdate="true" placeholder="Año de fabricación: 1990" liveChange="onLiveChange" />
                     <Label id="_IDGenLabel5" required="true" text="Precio" class="labelForm"/>

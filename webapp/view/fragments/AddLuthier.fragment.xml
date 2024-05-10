@@ -12,7 +12,12 @@
                     <Label id="_IDGenLabel4" required="true" text="Localidad" class="labelForm"/>
                     <Input id="localidadInput" value="{CreateLuthier>/Localidad}" valueLiveUpdate="true" placeholder="Localidad: Rosario"/>
                     <Label id="_IDGenLabel5" required="true" text="Tipo de Instrumento" class="labelForm"/>
-                    <Input id="tipoInstrumentoInput" value="{CreateLuthier>/TipoInstrumento}" valueLiveUpdate="true" placeholder="Tipo: Cuerdas"/>
+                    <Select id="tipoInstrumentoSelect" selectedKey="{CreateLuthier>/TipoInstrumento}">
+                        <core:Item id="_IDGenItem4" key="" text="Elija el tipo"/>
+                        <core:Item id="_IDGenItem1" key="Clásico" text="Cuerdas"/>
+                        <core:Item id="_IDGenItem2" key="Vientos" text="Vientos"/>
+                        <core:Item id="_IDGenItem3" key="Percusión" text="Percusión"/>
+                    </Select>
                     <Label id="_IDGenLabel6" required="true" text="Descripción" class="labelForm"/>
                     <TextArea id="descripcionInput" value="{CreateLuthier>/Descripcion}" valueLiveUpdate="true" maxLength="200" placeholder="Descripción: Luthier con 10 años de experiencia en el rubro."/>
                 </form:content>

@@ -12,7 +12,11 @@
                     <Label id="_IDGenLabel42" text="Localidad" class="labelForm"/>
                     <Input id="localidadInput2" value="{UpdateLuthier>/Localidad}" valueLiveUpdate="true"/>
                     <Label id="_IDGenLabel52" text="Tipo de Instrumento" class="labelForm"/>
-                    <Input id="tipoInstrumentoInpu2t" value="{UpdateLuthier>/TipoInstrumento}" valueLiveUpdate="true"/>
+                    <Select id="tipoInstrumentoSelect" selectedKey="{UpdateLuthier>/TipoInstrumento}">
+                        <core:Item id="_IDGenItem1" key="Cuerdas" text="Cuerdas"/>
+                        <core:Item id="_IDGenItem2" key="Vientos" text="Vientos"/>
+                        <core:Item id="_IDGenItem3" key="Percusión" text="Percusión"/>
+                    </Select>
                     <Label id="_IDGenLabel62" text="Descripción" class="labelForm"/>
                     <TextArea id="descripcionInput2" value="{UpdateLuthier>/Descripcion}" valueLiveUpdate="true" maxLength="200"/>
                 </form:content>
